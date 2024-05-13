@@ -1,0 +1,18 @@
+#!/bin/bash
+
+INCLUDEPATH="./include/sian/"
+SRCPATH="./src/"
+EXAMPLEPATH="./example/"
+
+echo -n "Enter source file name (without extension): "
+read FILE
+echo -n "Require hpp file (y/n): "
+read ISHPP
+
+cp $EXAMPLEPATH"sample.h" $INCLUDEPATH$FILE".h"
+cp $EXAMPLEPATH"sample.cpp" $SRCPATH$FILE".cpp"
+
+if [ $ISHPP == "y" ];
+then
+cp $EXAMPLEPATH"sample.hpp" $INCLUDEPATH$FILE".hpp"
+fi

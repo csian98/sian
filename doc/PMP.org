@@ -1,0 +1,44 @@
+#+TITLE: PMP.org
+#+AUTHOR: Jeong Hoon Choi
+
+* Project Management Plan
+Project Tagline
+- Created by: Jeong Hoon Choi, Project Manager
+- Created on: Apr 25, 2024
+| Developer       | Role |
+|-----------------+------|
+| Jeong Hoon Choi | PM   |
+
+** Introduction
+*** Project Name
+PROJECT NAME
+*** Project Due Date
+TBD
+*** Project Description
+PROJECT DESCRIPTION
+
+** System Development Environment
+*** HW structure
+| SYSTEM | IP | OS | HOST | NOTE |
+|--------+----+----+------+------|
+|        |    |    |      |      |
+*** SW structure
+| SYSTEM | PORT | NOTE |
+|--------+------+------|
+|        |      |      |
+*** APIs
+| PROVIDER | ID | TOKEN | NOTE |
+|----------+----+-------+------|
+|          |    |       |      |
+
+** Requirements
+*** Functional Requirement
+- 
+*** Non-Functional Requirements
+- 
+
+** Project Architecture Design
+*** [[./model.puml][UML]]
+
+** Task Management
+*** [[./TM.org][Task Mangement Org]]

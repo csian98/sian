@@ -23,13 +23,22 @@
  */
 
 #include <iostream>
+#include <exception>
+
 #include "sample.h"
 
 #if _TARGET_OS == OS_WINDOWS
 
 #elif _TARGET_OS == OS_LINUX
 
+//void custom_terminate_fnct(void) {
+//	exit(1);
+//}
+
 int main(int argc, char* argv[]) {
+//	std::terminate_handler default_terminate =
+//		std::set_terminate(&custom_terminate_fnct);
+	
 
 	return 0;
 }

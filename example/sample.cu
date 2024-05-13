@@ -1,12 +1,12 @@
 /**
- * @file		sample.cpp
+ * @file		sample.cu
  * @brief       
  * @author  	Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-04-03
  */
 
-#include "sample.h"
+#include "sample.cuh"
 
 /* C & CPP */
 /*
@@ -76,7 +76,7 @@ Sample& Sample::operator=(Sample&& src) noexcept {
 
 /*
 
-void swap(Sample& lhs, Sample& rhs) noexcept {
+void swap(Sample& src, Sample& dst) noexcept {
 	// shallow copy
     // using std::swap;
 }

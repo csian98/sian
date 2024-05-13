@@ -1,5 +1,5 @@
 /**
- * @file		sample.h
+ * @file		sample.cuh
  * @brief       
  * @author  	Jeong Hoon (Sian) Choi
  * @version 	1.0.0
@@ -10,8 +10,8 @@
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 //#pragma comment(lib, "libpthread.so")
 
-#ifndef _HEADER_SAMPLEH_
-#define _HEADER_SAMPLEH_
+#ifndef _HEADER_SAMPLECUH_
+#define _HEADER_SAMPLECUH_
 
 /* OS dependent */
 #define OS_WINDOWS	0
@@ -25,22 +25,9 @@
 
 /* Include */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-
-#include <utility>
-#include <memory>
-#include <thread>
-
-#include <filesystem>
-
-#include <string>
-#include <string_view>
-#include <algorithm>
-#include <numeric>
-#include <execution>
+#include <cuda.h>
+#include <cuda_runtime.h>
+#include <device_launch_parameter.h>
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -65,14 +52,6 @@ extern "C" {
 /* defines typedef & constant */
 
 /* MACRO functions */
-#ifndef SWAP
-template <typename T>
-inline void SWAP(T& a, T& b) {
-	T tmp = std::move(a);
-	a = std::move(b);
-	b = std::move(tmp);
-}
-#endif
 
 #ifndef MIN
 #define MIN(a, b)	(a > b ? b : a)
@@ -100,32 +79,8 @@ inline void SWAP(T& a, T& b) {
 
 /* Data structures definition - struct & class */
 
-/*
 
-class Sample {
-	friend void swap(Sample&, Sample&) noexcept;
 
-public:
-	Sample(void) = default;
-	
-	Sample(std::initializer_list<int>);
-
-	virtual ~Sample(void) noexcept = default;
-
-	Sample(const Sample&);
-
-	Sample& operator=(const Sample&);
-
-	Sample(Sample&&) noexcept;
-
-	Sample& operator=(Sample&&) noexcept;
-protected:
-	
-private:
-	
-};
-
-*/
 
 /* Functions declare */
 

@@ -1,9 +1,9 @@
 /**
- * @file		sample.h
- * @brief       
+ * @file		logger.h
+ * @brief       multi thread logger
  * @author  	Jeong Hoon (Sian) Choi
  * @version 	1.0.0
- * @date		2024-04-03
+ * @date		2024-05-13
  */
 	 
 //#pragma once
@@ -25,22 +25,15 @@
 
 /* Include */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-
-#include <utility>
-#include <memory>
-#include <thread>
-
-#include <filesystem>
-
+#include <fstream>
+#include <queue>
 #include <string>
 #include <string_view>
-#include <algorithm>
-#include <numeric>
-#include <execution>
+#include <filesystem>
+
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -65,22 +58,6 @@ extern "C" {
 /* defines typedef & constant */
 
 /* MACRO functions */
-#ifndef SWAP
-template <typename T>
-inline void SWAP(T& a, T& b) {
-	T tmp = std::move(a);
-	a = std::move(b);
-	b = std::move(tmp);
-}
-#endif
-
-#ifndef MIN
-#define MIN(a, b)	(a > b ? b : a)
-#endif
-
-#ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
-#endif
 
 /* Inline define */
 
@@ -100,32 +77,32 @@ inline void SWAP(T& a, T& b) {
 
 /* Data structures definition - struct & class */
 
-/*
+namespace sian {
+	class Logger {
+	public:
+		Logger(std::string_view file = "log.txt");
 
-class Sample {
-	friend void swap(Sample&, Sample&) noexcept;
+		virtual ~Logger(void);
 
-public:
-	Sample(void) = default;
-	
-	Sample(std::initializer_list<int>);
+		Logger(const Logger&) = delete;
 
-	virtual ~Sample(void) noexcept = default;
+		Logger& operator=(const Logger&) = delete;
 
-	Sample(const Sample&);
+		void log(std::string_view);
+	private:
+		void thread_process(void);
 
-	Sample& operator=(const Sample&);
+		bool m_exit = false;
 
-	Sample(Sample&&) noexcept;
+		std::mutex m_mutex;
+		std::condition_variable m_cond_var;
+		std::thread m_thread;
 
-	Sample& operator=(Sample&&) noexcept;
-protected:
-	
-private:
-	
-};
+		std::queue<std::string> m_queue;
 
-*/
+		std::filesystem::path m_path;
+	};
+}
 
 /* Functions declare */
 

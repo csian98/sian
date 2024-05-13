@@ -1,17 +1,17 @@
 /**
- * @file		sample.h
- * @brief       
+ * @file		allocator.h
+ * @brief       allocator for standard container
  * @author  	Jeong Hoon (Sian) Choi
  * @version 	1.0.0
- * @date		2024-04-03
+ * @date		2024-05-09
  */
 	 
 //#pragma once
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 //#pragma comment(lib, "libpthread.so")
 
-#ifndef _HEADER_SAMPLEH_
-#define _HEADER_SAMPLEH_
+#ifndef _HEADER_HASHH_
+#define _HEADER_HASHH_
 
 /* OS dependent */
 #define OS_WINDOWS	0
@@ -25,22 +25,7 @@
 
 /* Include */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-
-#include <utility>
 #include <memory>
-#include <thread>
-
-#include <filesystem>
-
-#include <string>
-#include <string_view>
-#include <algorithm>
-#include <numeric>
-#include <execution>
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -65,22 +50,6 @@ extern "C" {
 /* defines typedef & constant */
 
 /* MACRO functions */
-#ifndef SWAP
-template <typename T>
-inline void SWAP(T& a, T& b) {
-	T tmp = std::move(a);
-	a = std::move(b);
-	b = std::move(tmp);
-}
-#endif
-
-#ifndef MIN
-#define MIN(a, b)	(a > b ? b : a)
-#endif
-
-#ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
-#endif
 
 /* Inline define */
 
@@ -100,32 +69,30 @@ inline void SWAP(T& a, T& b) {
 
 /* Data structures definition - struct & class */
 
-/*
+namespace sian {
+	template <typename T>
+	class custom_allocator: public std::allocator<T> {
+	public:
+		typedef size_t size_type;
+		typedef T* pointer;
+		typedef const T* const_pointer;
 
-class Sample {
-	friend void swap(Sample&, Sample&) noexcept;
+		template <typename _Tp1>
+		struct rebind {
+			typedef custom_allocator<_Tp1> other;
+		};
 
-public:
-	Sample(void) = default;
-	
-	Sample(std::initializer_list<int>);
+		custom_allocator(void) noexcept;
 
-	virtual ~Sample(void) noexcept = default;
+		template <typename U>
+		custom_allocator(const custom_allocator<T>&) noexcept;
 
-	Sample(const Sample&);
+		virtual pointer allocate(size_type n, const void* hint = 0) = 0;
 
-	Sample& operator=(const Sample&);
+		virtual void deallocate(pointer p, size_type n) = 0;
+	};
+}
 
-	Sample(Sample&&) noexcept;
-
-	Sample& operator=(Sample&&) noexcept;
-protected:
-	
-private:
-	
-};
-
-*/
 
 /* Functions declare */
 
