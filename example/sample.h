@@ -1,8 +1,8 @@
 /**
  * @file		sample.h
- * @brief       
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @brief		
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-03
  */
 	 
@@ -15,7 +15,7 @@
 
 /* OS dependent */
 #define OS_WINDOWS	0
-#define OS_LINUX   	1
+#define OS_LINUX	1
 
 #ifdef _WIN32
 #define _TARGET_OS	OS_WINDOWS
@@ -79,7 +79,7 @@ inline void SWAP(T& a, T& b) {
 #endif
 
 #ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
+#define MAX(a, b)	(a > b ? a : b)
 #endif
 
 /* Inline define */

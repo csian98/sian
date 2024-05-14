@@ -1,11 +1,11 @@
 /**
  * @file		sample.cuh
- * @brief       
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @brief		
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-03
  */
-	 
+
 //#pragma once
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 //#pragma comment(lib, "libpthread.so")
@@ -15,7 +15,7 @@
 
 /* OS dependent */
 #define OS_WINDOWS	0
-#define OS_LINUX   	1
+#define OS_LINUX	1
 
 #ifdef _WIN32
 #define _TARGET_OS	OS_WINDOWS
@@ -58,7 +58,7 @@ extern "C" {
 #endif
 
 #ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
+#define MAX(a, b)	(a > b ? a : b)
 #endif
 
 /* Inline define */

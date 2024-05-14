@@ -1,7 +1,7 @@
 /**
  * @file		main.cpp
  * @brief		
- * @author  	Jeong Hoon (Sian) Choi
+ * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-04-03
  */
@@ -36,8 +36,8 @@
 //}
 
 int main(int argc, char* argv[]) {
-//	std::terminate_handler default_terminate =
-//		std::set_terminate(&custom_terminate_fnct);
+// 	std::terminate_handler default_terminate =
+//	std::set_terminate(&custom_terminate_fnct);
 	
 
 	return 0;

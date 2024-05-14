@@ -1,7 +1,7 @@
 /**
  * @file		sample.hpp
  * @brief		
- * @author  	Jeong Hoon (Sian) Choi
+ * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2023-11-26
  */

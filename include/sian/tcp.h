@@ -1,8 +1,8 @@
 /**
  * @file		tcp.h
- * @brief       TCP
- * @author	    Jeong Hoon (Sian) Choi
- * @version	    1.0.0
+ * @brief		TCP
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-30
  */
 	 
@@ -15,7 +15,7 @@
 
 /* OS dependent */
 #define OS_WINDOWS	0
-#define OS_LINUX		1
+#define OS_LINUX	1
 
 #ifdef _WIN32
 #define _TARGET_OS	OS_WINDOWS
@@ -59,9 +59,9 @@ extern "C" {
 
 /* defines typedef & constant */
 
-#define DOMAIN_TYPE AF_INET
-#define SOCKET_TYPE SOCK_STREAM
-#define PACKET_SIZE 2048
+#define DOMAIN_TYPE	AF_INET
+#define SOCKET_TYPE	SOCK_STREAM
+#define PACKET_SIZE	2048
 
 /* MACRO functions */
 #ifndef SWAP
@@ -78,7 +78,7 @@ inline void SWAP(T& a, T& b) {
 #endif
 
 #ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
+#define MAX(a, b)	(a > b ? a : b)
 #endif
 
 /* Inline define */

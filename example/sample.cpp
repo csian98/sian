@@ -1,8 +1,8 @@
 /**
  * @file		sample.cpp
- * @brief       
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @brief		
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-03
  */
 

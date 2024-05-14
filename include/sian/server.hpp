@@ -1,8 +1,8 @@
 /**
  * @file		server.hpp
  * @brief		SERVER
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-30
  */
 	 
@@ -12,7 +12,7 @@
 #ifndef _HEADER_SERVERHPP_
 #define _HEADER_SERVERHPP_
 
-#include "server.h"
+#include "sian/server.h"
 
 #if _TARGET_OS == OS_WINDOWS
 

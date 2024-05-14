@@ -1,4 +1,6 @@
-TARGET_EXEC := final_program
+TARGET_EXEC := main
+CC := clang
+CXX := clang++ -std=c++20
 
 BUILD_DIR := ./build
 SRC_DIRS := ./src
@@ -11,6 +13,7 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
+LDFLAGS := -I./lib
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)

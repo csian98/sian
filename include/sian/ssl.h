@@ -1,8 +1,8 @@
 /**
  * @file		ssl.h
- * @brief       SSL
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @brief		SSL
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-04-30
  */
 	 
@@ -14,6 +14,7 @@
 #define _HEADER_SSLH_
 
 /* OS dependent */
+#include <ratio>
 #define OS_WINDOWS	0
 #define OS_LINUX	1
 
@@ -74,7 +75,7 @@ extern "C" {
 #endif
 
 #ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
+#define MAX(a, b)	(a > b ? a : b)
 #endif
 
 /* Inline define */

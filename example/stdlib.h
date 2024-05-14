@@ -1,8 +1,8 @@
 /**
  * @file		stdlib.h
  * @brief		
- * @author	Jeong Hoon (Sian) Choi
- * @version	1.0.0
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2023-11-30
  */
 	 

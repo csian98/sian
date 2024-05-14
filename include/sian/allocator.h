@@ -1,8 +1,8 @@
 /**
  * @file		allocator.h
- * @brief       allocator for standard container
- * @author  	Jeong Hoon (Sian) Choi
- * @version 	1.0.0
+ * @brief		allocator for standard container
+ * @author		Jeong Hoon (Sian) Choi
+ * @version		1.0.0
  * @date		2024-05-09
  */
 	 
@@ -15,7 +15,7 @@
 
 /* OS dependent */
 #define OS_WINDOWS	0
-#define OS_LINUX   	1
+#define OS_LINUX	1
 
 #ifdef _WIN32
 #define _TARGET_OS	OS_WINDOWS
