@@ -4,3 +4,4 @@
 -I/usr/local/include
 -I/opt/homebrew/include
 -I/Users/csian/projects/sian/include
+-I/Users/csian/projects/cuda/include

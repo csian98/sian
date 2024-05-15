@@ -27,7 +27,6 @@
 
 #include <cuda.h>
 #include <cuda_runtime.h>
-#include <device_launch_parameter.h>
 
 #if __has_include(<iostream>)
 #include <iostream>
