@@ -1,3 +1,4 @@
+
 /**
  * @file		main.cu
  * @brief		
@@ -39,7 +40,7 @@
 __host__ int main(int argc, char* argv[]) {
 // 	std::terminate_handler default_terminate =
 //	std::set_terminate(&custom_terminate_fnct);
-//	cuda_main<<<1, 10>>>();
+//	kernel<<<1, 10>>>();
 
 	return 0;
 }

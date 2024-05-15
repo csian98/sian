@@ -1,3 +1,4 @@
+
 /**
  * @file		sample.cu
  * @brief		
@@ -22,12 +23,12 @@ extern "C" {
 /* Definition */
 
 /* Functions definition */
-// __device__ void cuda_function(void) {
+// __device__ void device(void) {
 //	
 //}
 
-// __global__ void cuda_main(void) {
-//	cuda_function();
+// __global__ void kernel(void) {
+//	device();
 // }
 
 #endif // OS dependency

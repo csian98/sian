@@ -76,7 +76,7 @@ extern "C" {
 
 /* Functions declaration */
 // __device__ void cuda_function(void);
-// __global__ void cuda_main(void);
+// __global__ void kernel(void);
 
 
 /*
