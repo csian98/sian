@@ -23,13 +23,13 @@ extern "C" {
 /* Definition */
 
 /* Functions definition */
-// __device__ void device(void) {
-//	
-//}
+__device__ void device(void) {
+	
+}
 
-// __global__ void kernel(void) {
-//	device();
-// }
+__global__ void kernel(void) {
+	device();
+}
 
 #endif // OS dependency
 

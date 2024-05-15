@@ -1,4 +1,3 @@
-
 /**
  * @file		main.cu
  * @brief		
@@ -40,7 +39,46 @@
 __host__ int main(int argc, char* argv[]) {
 // 	std::terminate_handler default_terminate =
 //	std::set_terminate(&custom_terminate_fnct);
+	void *d_ptr, *h_ptr;
+	size_t allocate = 4096;
+
+	h_ptr = malloc(sizeof(std::byte)*allocate);
+	memset(h_ptr, 0, sizeof(std::byte)*allocate);
+
+	// memory processing in host
+	
+    if (auto error = cudaMalloc(&d_ptr, sizeof(std::byte)*allocate) != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+	
+	if (auto error = cudaMemset(&d_ptr, 0, sizeof(std::byte)*allocate) != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+
+	if (auto error = cudaMemcpy(d_ptr, h_ptr, sizeof(std::byte)*allocate) != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+
 //	kernel<<<1, 10>>>();
+
+    if (auto error = cudaDeviceSynchronize() != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+
+	if (auto error = cudaMemcpy(h_ptr, d_ptr, sizeof(std::byte)*allocate, cudaMemcpyDeviceToHost) != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+	
+	if (auto error = cudaFree(d_ptr) != cudaSuccess) {
+		std::cerr << cudaGetErrorName(error) << std::endl;
+		exit(1);
+	}
+	free(h_ptr);
 
 	return 0;
 }
