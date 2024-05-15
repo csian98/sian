@@ -98,7 +98,7 @@ inline void SWAP(T& a, T& b) {
 /* ASM codes */
 // extern "C" int func(int x, int y);
 
-/* Data structures definition - struct & class */
+/* Data structures declaration - struct & class */
 
 /*
 
@@ -127,7 +127,7 @@ private:
 
 */
 
-/* Functions declare */
+/* Functions declaration */
 
 // void swap(Sample&, Sample&) noexcept;
 

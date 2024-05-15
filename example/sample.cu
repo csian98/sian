@@ -21,67 +21,14 @@ extern "C" {
 
 /* Definition */
 
-/* ASM codes */
-/*
-asm(R"ASM(
-  ; assembly code x86-64 AT&T(fastcall-cdecl)
-func:
-  .cfi_startproc
-        pushq %rbp
-        .cfi_def_cfa_offset 16
-        .cfi_offset 6, -16
-        movq %rsp, %rbp
-        .cfi_def_cfa_register 6
-        movl %edi, -4(%rbp)  ; %rdi -> %rsi -> %rdx -> %rcx ->
-        movl %esi, -8(%rbp)  ; %r8  -> %r9  -> stack
-; return value %eax
-        popq %rbp
-				.cf_def_cfa 7, 8
-				ret
-				.cfi_endproc
-)ASM");
-*/
+/* Functions definition */
+// __device__ void cuda_function(void) {
+//	
+//}
 
-/* Data structures definition - struct & class */
-
-/*
-
-Sample::Sample(const Sample& src) {
-	// Deep Copy
-}
-
-Sample& Sample::operator=(const Sample& src) {
-	if(this == &src) {
-		return *this;
-	}
-	
-	Sample temp(src);
-	swap(*this, temp);
-	return *this;
-}
-
-Sample::Sample(Sample&& src) noexcept : Sample() {
-	swap(*this, src);
-}
-
-Sample& Sample::operator=(Sample&& src) noexcept {
-	Sample temp(std::move(src));
-	swap(*this, temp);
-	return *this;
-}
-
-*/
-
-/* Functions declare */
-
-/*
-
-void swap(Sample& src, Sample& dst) noexcept {
-	// shallow copy
-    // using std::swap;
-}
-
-*/
+// __global__ void cuda_main(void) {
+//	cuda_function();
+// }
 
 #endif // OS dependency
 

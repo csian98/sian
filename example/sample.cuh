@@ -27,6 +27,7 @@
 
 #include <cuda.h>
 #include <cuda_runtime.h>
+#include <device_launch_parameters.h>
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -73,17 +74,10 @@ extern "C" {
 
 /* Declaration */
 
-/* ASM codes */
-// extern "C" int func(int x, int y);
+/* Functions declaration */
+// __device__ void cuda_function(void);
+// __global__ void cuda_main(void);
 
-/* Data structures definition - struct & class */
-
-
-
-
-/* Functions declare */
-
-// void swap(Sample&, Sample&) noexcept;
 
 /*
 #ifdef __cplusplus

@@ -18,7 +18,7 @@
 
 #elif _TARGET_OS == OS_LINUX
 
-/* Inline & Template Define */
+/* Inline & Template Definition */
 
 #endif // OS dependency
 

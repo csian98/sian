@@ -72,7 +72,7 @@ Sample& Sample::operator=(Sample&& src) noexcept {
 
 */
 
-/* Functions declare */
+/* Functions definition */
 
 /*
 

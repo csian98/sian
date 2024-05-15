@@ -24,6 +24,7 @@
 
 #include <cuda.h>
 #include <cuda_runtime.h>
+#include <device_launch_parameters.h>
 
 #include "sample.cuh"
 
@@ -31,14 +32,14 @@
 
 #elif _TARGET_OS == OS_LINUX
 
-//void custom_terminate_fnct(void) {
+// void custom_terminate_fnct(void) {
 //	exit(1);
-//}
+// }
 
 __host__ int main(int argc, char* argv[]) {
 // 	std::terminate_handler default_terminate =
 //	std::set_terminate(&custom_terminate_fnct);
-	
+//	cuda_main<<<1, 10>>>();
 
 	return 0;
 }
