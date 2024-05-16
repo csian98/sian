@@ -81,12 +81,25 @@ extern "C" {
 /* Data structures declaration - struct & class */
 
 namespace sian {
+	class timer_error : public std::exception {
+	public:
+		explicit timer_error(const std::string& msg) : msg(msg) {}
+
+		virtual ~timer_error(void) noexcept = default;
+
+		virtual const char* what(void) const noexcept {
+			return msg.c_str();
+		}
+	private:
+		std::string msg;
+	};
+	
 	class Time {
 		friend std::ostream& operator<<(std::ostream& out, const sian::Time& time);
 	public:		
 		Time(void);
 		
-		virtual ~Time(void) = default;
+		virtual ~Time(void) noexcept = default;
 		
 		void set_name(std::string_view);
 		
@@ -96,7 +109,8 @@ namespace sian {
 		
 		void stop(void);
 		
-		template <typename T = std::nano> double total_time(void) const {
+		template <typename T = std::nano>
+		[[nodiscard]] double total_time(void) const {
 			return std::chrono::
 				duration_cast<std::chrono::duration<double, T>>(this->end - this->begin).count();
 		}
@@ -118,9 +132,23 @@ namespace sian {
 
 		virtual ~Timer(void) = default;
 
+		Timer(const Timer&) = delete;
+
+		Timer& operator=(const Timer&) = delete;
+
+		Timer(Timer&&) noexcept = delete;
+
+		Timer& operator=(Timer&&) noexcept = delete;
+
 		Time& operator[](int index);
 
 		void initialize(void);
+
+		void append(void);
+
+		void append(std::string_view);
+
+		void remove(int);
 	private:
 		int size;
 		

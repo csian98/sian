@@ -27,6 +27,15 @@
 
 #include "sample.h"
 
+#define OS_WINDOWS	0
+#define OS_LINUX	1
+
+#ifdef _WIN32
+#define _TARGET_OS	OS_WINDOWS
+#else
+	#define _TARGET_OS	OS_LINUX
+#endif
+
 #if _TARGET_OS == OS_WINDOWS
 
 #elif _TARGET_OS == OS_LINUX

@@ -59,11 +59,17 @@ void sian::Time::reset(void) {
 }
 
 void sian::Time::start(void) {
+	if(this->is_start)
+		throw timer_error("Cannot start started timer");
+		
 	this->is_start = true;
 	this->begin = std::chrono::high_resolution_clock::now();
 }
 
 void sian::Time::stop(void) {
+	if(!this->is_start)
+		throw timer_error("Cannot stop stopped timer");
+	
 	this->is_start = false;
 	this->end = std::chrono::high_resolution_clock::now();
 }
@@ -71,9 +77,9 @@ void sian::Time::stop(void) {
 sian::Timer::Timer(int size) : size(size), times(size)  {}
 
 sian::Time& sian::Timer::operator[](int index) {
-	if (index >= this->size) {
-		throw std::invalid_argument("Timer index is invalid argument");
-	}
+	if (index >= this->size)
+		throw timer_error("Timer index is invalid");
+	
 	return this->times[index];
 }
 
@@ -81,6 +87,25 @@ void sian::Timer::initialize(void) {
 	for (auto& time : this->times) {
 		time.reset();
 	}
+}
+
+void sian::Timer::append(void) {
+	this->size++;
+	this->times.emplace_back();
+}
+
+void sian::Timer::append(std::string_view name) {
+    this->append();
+	
+	this->times.back().set_name(name.data());
+}
+
+void sian::Timer::remove(int index) {
+	if (index >= this->size)
+		throw timer_error("Timer index is invalid");
+
+	this->size--;
+    this->times.erase(this->times.begin() + index);
 }
 
 /* Functions definition */
@@ -115,6 +140,7 @@ std::ostream& sian::operator<<(std::ostream& out, const sian::Timer& timer) {
 
 /*
 #ifdef __cplusplus
+
 }
 #endif
 */
