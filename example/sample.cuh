@@ -51,6 +51,29 @@ extern "C" {
 
 /* defines typedef & constant */
 
+#define BID_X	blockIdx.x
+#define BID_Y	blockIdx.y
+#define BID_Z	blockIdx.z
+
+#define TID_X	threadIdx.x
+#define TID_Y	threadIdx.y
+#define TID_Z	threadIdx.z
+
+#define GDIM_X	gridDim.x
+#define GDIM_Y	gridDim.y
+#define GDIM_Z	gridDim.z
+
+#define BDIM_X	blockDim.x
+#define BDIM_Y	blockDim.y
+#define BDIM_Z	blockDim.z
+
+#define TID_IN_BLOCK		(TID_Z * (BDIM_X * BDIM_Y) + TID_Y * BDIM_X + TID_X)
+#define NUM_THREAD_IN_BLOCK	(BDIM_X * BDIM_Y * BDIM_Z)
+
+#define GRID_1D_TID			((BID_X * NUM_THREAD_IN_BLOCK) + TID_IN_BLOCK)
+#define GRID_2D_TID			(BID_Y * (GDIM_X * NUM_THREAD_IN_BLOCK) + GRID_1D_TID)
+#define GROBAL_TID			(BID_Z * (GDIM_X * GDIM_Y * NUM_THREAD_IN_BLOCK) + GRID_2D_TID)
+
 /* MACRO functions */
 
 #ifndef MIN

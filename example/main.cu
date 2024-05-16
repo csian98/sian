@@ -42,6 +42,9 @@ __host__ int main(int argc, char* argv[]) {
 	void *d_ptr, *h_ptr;
 	size_t allocate = 4096;
 
+	Dim3 dim_grid(1, 1, 1);
+	Dim3 dim_block(32, 32, 1);
+
 	h_ptr = malloc(sizeof(std::byte)*allocate);
 	memset(h_ptr, 0, sizeof(std::byte)*allocate);
 
@@ -62,7 +65,7 @@ __host__ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 
-//	kernel<<<1, 10>>>();
+	kernel<<<dim_grid, dim_block>>>();
 
     if (auto error = cudaDeviceSynchronize() != cudaSuccess) {
 		std::cerr << cudaGetErrorName(error) << std::endl;
