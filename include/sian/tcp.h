@@ -50,6 +50,9 @@
 #include <fcntl.h>
 #include <termios.h>
 
+#include <string.h>
+#include <strings.h>
+
 /* C & CPP */
 /*
 #ifdef __cplusplus
