@@ -50,8 +50,10 @@ clean:
 
 exec: $(LIB_DIR)/$(LIB_TARGET)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(EXEC_SRC) -o $(EXEC_TARGET)
+	rm $(EXEC_TARGET).d
 
 exec_nv: $(LIB_DIR)/$(LIB_TARGET)
 	$(NVCC) $(NVCCFLAGS) $(LDFLAGS) $(EXEC_NV_SRC) -o $(EXEC_TARGET)
+	rm $(EXC_NV_SRC).d
 
 -include $(DEPS)
