@@ -1,45 +1,59 @@
-TARGET_EXEC := exec_name
+# ENV
+EXEC_TARGET := main
+EXEC_SRC := main.cpp
+EXEC_NV_SRC := main.cu
+LIB_TARGET := libsian.a
 CC := clang
 CXX := c++
 NVCC := nvcc
 AR := ar
 
+# DIR_STRUCTURE
 BUILD_DIR := build
-SRC_DIRS := src
+SRC_DIR := src
 INC_DIR := include /opt/homebrew/include
 LIB_DIR := lib
 
-SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s' -or -name "*.cu")
+SRCS := $(shell find $(SRC_DIR) -name "*.cpp" -or -name "*.c" -or -name "*.s" -or -name "*.cu")
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-#INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+#INC_DIRS := $(shell find $(INC_DIR) -type d)
 INC_DIRS := $(INC_DIR)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CFLAGS := $(INC_FLAGS) -MMD- MP
-CPPFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP
-NVCCFLAGS :=
-LDFLAGS :=
+# Flags
+CFLAGS := $(INC_FLAGS) -MMD -MP
+CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP
+NVCCFLAGS := -I/Users/csian/projects/cuda/include
+LDFLAGS := -L/Users/csian/projects/sian/lib -lsian
 ARFLAGS := crs
 
-$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+$(LIB_DIR)/$(LIB_TARGET): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
 
 $(BUILD_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.cu.o: %.cu
 	mkdir -p $(dir $@)
-	$(NVCC) $(CPPFLAGS) -c $< -o $@
+	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
-.PHONY: clean
+.PHONY: exec exec_nv clean
 clean:
-	rm -r $(BUILD_DIR)
+	rm -r $(BUILD_DIR)/
+
+exec: $(LIB_DIR)/$(LIB_TARGET)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(EXEC_SRC) -o $(EXEC_TARGET)
+	rm $(EXEC_TARGET).d
+
+exec_nv: $(LIB_DIR)/$(LIB_TARGET)
+	$(NVCC) $(NVCCFLAGS) $(LDFLAGS) $(EXEC_NV_SRC) -o $(EXEC_TARGET)
+	rm $(EXC_NV_SRC).d
 
 -include $(DEPS)
