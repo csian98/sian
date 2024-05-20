@@ -1,4 +1,6 @@
-build/src/ssl.cpp.o: src/ssl.cpp include/sian/ssl.h include/sian/tcp.h \
+build/src/ssl.cpp.o: src/ssl.cpp \
+  /Users/csian/projects/sian/include/sian/ssl.h \
+  /Users/csian/projects/sian/include/sian/tcp.h \
   /opt/homebrew/include/openssl/ssl.h \
   /opt/homebrew/include/openssl/macros.h \
   /opt/homebrew/include/openssl/opensslconf.h \
@@ -67,9 +69,9 @@ build/src/ssl.cpp.o: src/ssl.cpp include/sian/ssl.h include/sian/tcp.h \
   /opt/homebrew/include/openssl/quic.h \
   /opt/homebrew/include/openssl/err.h
 
-include/sian/ssl.h:
+/Users/csian/projects/sian/include/sian/ssl.h:
 
-include/sian/tcp.h:
+/Users/csian/projects/sian/include/sian/tcp.h:
 
 /opt/homebrew/include/openssl/ssl.h:
 

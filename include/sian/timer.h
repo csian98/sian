@@ -93,7 +93,7 @@ namespace sian {
 	private:
 		std::string msg;
 	};
-	
+
 	class Time {
 		friend std::ostream& operator<<(std::ostream& out, const sian::Time& time);
 	public:		
@@ -110,7 +110,7 @@ namespace sian {
 		void stop(void);
 		
 		template <typename T = std::nano>
-		[[nodiscard]] double total_time(void) const {
+		[[nodiscard]] double time_casting(void) const {
 			return std::chrono::
 				duration_cast<std::chrono::duration<double, T>>(this->end - this->begin).count();
 		}

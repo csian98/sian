@@ -117,7 +117,7 @@ std::ostream& sian::operator<<(std::ostream& out, const sian::Time& time) {
 		out << "Anonymous: ";
 	}
 
-	out << std::setprecision(6) << time.total_time<std::milli>()
+	out << std::setprecision(6) << time.time_casting<std::milli>()
 		<< " milli seoncds" << std::endl;
 	return out;
 }

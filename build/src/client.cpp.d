@@ -1,5 +1,7 @@
-build/src/client.cpp.o: src/client.cpp include/sian/client.h \
-  include/sian/tcp.h include/sian/ssl.h \
+build/src/client.cpp.o: src/client.cpp \
+  /Users/csian/projects/sian/include/sian/client.h \
+  /Users/csian/projects/sian/include/sian/tcp.h \
+  /Users/csian/projects/sian/include/sian/ssl.h \
   /opt/homebrew/include/openssl/ssl.h \
   /opt/homebrew/include/openssl/macros.h \
   /opt/homebrew/include/openssl/opensslconf.h \
@@ -66,13 +68,14 @@ build/src/client.cpp.o: src/client.cpp include/sian/client.h \
   /opt/homebrew/include/openssl/dtls1.h \
   /opt/homebrew/include/openssl/srtp.h \
   /opt/homebrew/include/openssl/quic.h \
-  /opt/homebrew/include/openssl/err.h include/sian/client.hpp
+  /opt/homebrew/include/openssl/err.h \
+  /Users/csian/projects/sian/include/sian/client.hpp
 
-include/sian/client.h:
+/Users/csian/projects/sian/include/sian/client.h:
 
-include/sian/tcp.h:
+/Users/csian/projects/sian/include/sian/tcp.h:
 
-include/sian/ssl.h:
+/Users/csian/projects/sian/include/sian/ssl.h:
 
 /opt/homebrew/include/openssl/ssl.h:
 
@@ -210,4 +213,4 @@ include/sian/ssl.h:
 
 /opt/homebrew/include/openssl/err.h:
 
-include/sian/client.hpp:
+/Users/csian/projects/sian/include/sian/client.hpp:
