@@ -1,7 +1,6 @@
 # ENV
 EXEC_TARGET := main
 EXEC_SRC := main.cpp
-EXEC_NV_SRC := main.cu
 LIB_TARGET := libsian.a
 CC := clang
 CXX := c++
@@ -14,7 +13,12 @@ SRC_DIR := src
 INC_DIR := /Users/csian/projects/sian/include /opt/homebrew/include
 LIB_DIR := /Users/csian/projects/sian/lib
 
-SRCS := $(shell find $(SRC_DIR) -name "*.cpp" -or -name "*.c" -or -name "*.s" -or -name "*.cu")
+ifeq ($(shell which nvcc), )
+	SRCS := $(shell find $(SRC_DIR) -name "*.cpp" -or -name "*.c" -or -name "*.s")
+else
+	SRCS := $(shell find $(SRC_DIR) -name "*.cpp" -or -name "*.c" -or -name "*.s" -or -name "*.cu")
+endif
+
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
@@ -28,6 +32,9 @@ CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP
 NVCCFLAGS := $(INC_FLAGS)
 LDFLAGS := -L/Users/csian/projects/sian/lib -lsian
 ARFLAGS := crs
+
+IS_NVCC := $(notdir $(shell which $(NVCC) 2> /dev/null))
+$(info $(IS_NVCC))
 
 $(LIB_DIR)/$(LIB_TARGET): $(OBJS)
 	mkdir -p $(dir $@)
@@ -45,7 +52,7 @@ $(BUILD_DIR)/%.cu.o: %.cu
 	mkdir -p $(dir $@)
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
-.PHONY: exec exec_nv clean clean_lib
+.PHONY: exec clean clean_lib
 clean:
 	rm -r $(BUILD_DIR)/*
 
@@ -55,9 +62,5 @@ clean_lib:
 exec: $(LIB_DIR)/$(LIB_TARGET)
 	$(CXX) -o $(EXEC_TARGET) $(EXEC_SRC) $(CXXFLAGS) $(LDFLAGS)
 	rm $(EXEC_TARGET).d
-
-exec_nv: $(LIB_DIR)/$(LIB_TARGET)
-	$(NVCC) -o $(EXEC_TARGET) $(EXEC_NV_SRC) $(NVCCFLAGS) $(LDFLAGS)
-	rm $(EXC_NV_SRC).d
 
 -include $(DEPS)

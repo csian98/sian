@@ -1,4 +1,3 @@
-
 /**
  * @file		sample.cu
  * @brief		
@@ -7,7 +6,7 @@
  * @date		2024-04-03
  */
 
-#include "sample.cuh"
+#include "sample_cuda.h"
 
 /* C & CPP */
 /*
@@ -22,13 +21,28 @@ extern "C" {
 
 /* Definition */
 
-/* Functions definition */
-__device__ void device(void) {
-	
-}
+/* Cuda Global & Device definition */
 
 __global__ void kernel(void) {
-	device();
+//
+}
+
+/* Cuda Host Difinition */
+
+void kernel_call(void) {	
+	/*
+	  // heterogeneous computing
+	int ngpus;
+	cudaGetDeviceCount(&ngpus);
+
+	for (int device = 0; devcie < gpus; ++device) {
+		cudaSetDevice(device);
+		//
+	}
+	*/
+	// kernel<<<dim3_grid, dim3_blk, dynamic_shared_size, stream>>>();
+	
+	// cudaDeviceSyncronize();
 }
 
 #endif // OS dependency

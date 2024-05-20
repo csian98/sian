@@ -58,7 +58,10 @@ bool check_matrix(const T* a, const T* b, const int n, const int m, const double
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < m; ++j) {
 			int index = i * m + j;
-			if (std::fabs(a[index] - b[index]) > tolerance) return false;
+			if (std::fabs(a[index] - b[index]) > tolerance) {
+				std::cout << a[index] << " : " << b[index] << "[" << index << "]" <<std::endl;
+				return false;
+			}
 		}
 	}
 	return true;
@@ -68,11 +71,11 @@ template <typename T>
 void single_thread(const T* a, const T* b, T* c, const int n, const int m, const int k) {
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < m; ++j) {
-			int inner = 0;
+			double value = 0;
 			for (int l = 0; l < k; ++l) {
-				inner += a[i * k + l] + b[l * m + j];
+				value += a[i * k + l] * b[l * m + j];
 			}
-			c[i * k + j] = inner;
+			c[i * m + j] += value;
 		}
 	}
 }
@@ -80,15 +83,15 @@ void single_thread(const T* a, const T* b, T* c, const int n, const int m, const
 template <typename T>
 void multi_thread(const T* a, const T* b, T* c, const int n, const int m, const int k,
 				  const int thread_index, const int thread_num) {
-	int tasks = std::ceil(static_cast<float>(m) / thread_num);
+	const int tasks = std::ceil(static_cast<float>(m) / thread_num);
 	for (int i = 0; i < n; ++i) {
 		for (int j = thread_index * tasks; j < (thread_index + 1) * tasks; ++j) {
-			int value = 0;
+			double value = 0;
 			for (int l = 0; l < k; ++l) {
-				if (j > m) break;
-				value += a[i * k +l] + b[l * m + j];
+				if (j < m)
+					value += a[i * k + l] * b[l * m + j];
 			}
-			c[i * k + j] = value;
+			c[i * m + j] += value;
 		}
 	}
 }
@@ -105,16 +108,17 @@ __global__ void cuda_kernel(const T* a, const T* b, T* c, const int n, const int
 	__shared__ T partial_a[block_size][block_size];
 	__shared__ T partial_b[block_size][block_size];
 
+	double value = 0;
+	
 	for (int blk = 0; blk < std::ceil(static_cast<float>(k) / block_size); ++blk) {
-		int value = 0;
 		int stride = blk * block_size;
 
-	    if (row >= m || stride + local_row >= k)
+	    if (row >= n || stride + local_col >= k)
 			partial_a[local_row][local_col] = 0;
 		else
 			partial_a[local_row][local_col] = a[row * k + (stride + local_col)];
 
-		if (col >= n || stride + local_col >= k)
+		if (col >= m || stride + local_row >= k)
 			partial_b[local_col][local_row] = 0;	// transpose (bank-confilic minimize)
 		else
 			partial_b[local_col][local_row] = b[(stride + local_row) * m + col];	// transpose
@@ -122,14 +126,13 @@ __global__ void cuda_kernel(const T* a, const T* b, T* c, const int n, const int
 		__syncthreads();
 
 		for (int i = 0; i < block_size; ++i) {
-			value += partial_a[local_row][local_col] * partial_b[local_col][local_row];	// partial_b transpose
+			value += partial_a[local_row][i] * partial_b[local_col][i];	// partial_b transpose
 		}
-
 		__syncthreads();
-
-		if (row < m && col > n)
-			c[m * row + col] += value;
 	}
+	if (row >= n || col >= m) return;
+	
+	c[m * row + col] = value;
 }
 
 int main(int argc, char* argv[]) {
@@ -140,9 +143,9 @@ int main(int argc, char* argv[]) {
 	std::mt19937 engine(rd());
 	std::uniform_real_distribution<double> distribution(-1.0, 1.0);
 	
-	const int n = 2048;
-	const int k = 2048;
-	const int m = 2048;
+	const int n = 1024 * 4;
+	const int k = 1024 * 4;
+	const int m = 1024 * 4;
 
 	double* a = new double[n * k];
 	double* b = new double[k * m];
@@ -152,6 +155,9 @@ int main(int argc, char* argv[]) {
 
 	for (int i = 0; i < n * k; ++i) a[i] = distribution(engine);
 	for (int i = 0; i < k * m; ++i) b[i] = distribution(engine);
+
+	memset(c1, 0, sizeof(n * m));
+	memset(c2, 0, sizeof(n * m));
 
 	std::cout << "####\nMatrix Multiply Parallel Calculation\n####\n" << std::endl;
 	
@@ -175,13 +181,30 @@ int main(int argc, char* argv[]) {
 	timer[2].set_name("cuda GPU SIMT");
 	timer[2].start();
 
-	dim3 grid_dim(std::ceil(static_cast<float>(n) / block_size),
-				  std::ceil(static_cast<float>(m) / block_size));
+	dim3 grid_dim(std::ceil(static_cast<float>(m) / block_size),
+				  std::ceil(static_cast<float>(n) / block_size));
 	dim3 block_dim(block_size, block_size);
-	cuda_kernel<double><<<grid_dim, block_dim>>>(a, b, c2, n, m ,k);
+	double* d_a;
+	double* d_b;
+	double* d_c;
+	cudaMalloc(&d_a, sizeof(double) * n * k);
+	cudaMalloc(&d_b, sizeof(double) * k * m);
+	cudaMalloc(&d_c, sizeof(double) * n * m);
+
+	cudaMemcpy(d_a, a, sizeof(double) * n * k, cudaMemcpyHostToDevice);
+	cudaMemcpy(d_b, b, sizeof(double) * k * m, cudaMemcpyHostToDevice);
+	cudaMemset(d_c, 0, sizeof(double) * n * k);
+
+	cuda_kernel<double><<<grid_dim, block_dim>>>(d_a, d_b, d_c, n, m ,k);
+
+	cudaMemcpy(c3, d_c, sizeof(double) * n * m, cudaMemcpyDeviceToHost);
+
+	cudaFree(d_a);
+	cudaFree(d_b);
+	cudaFree(d_c);
 	cudaDeviceSynchronize();
 	timer[2].stop();
-	std::cout << "cuda GPU SIMT is correct : " << std::boolalpha << check_matrix(c1, c2, n, m) << std::endl;
+	std::cout << "cuda GPU SIMT is correct : " << std::boolalpha << check_matrix(c1, c3, n, m) << std::endl;
 	
 	std::cout << timer;
 

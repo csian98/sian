@@ -3,4 +3,5 @@
 -I/usr/include
 -I/usr/local/include
 -I/opt/homebrew/include
--I/Users/csian/boost_1_81_0
+-I/Users/csian/projects/sian/include
+-I/Users/csian/projects/cuda/include

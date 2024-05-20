@@ -1,5 +1,5 @@
 /**
- * @file		sample.cuh
+ * @file		sample_cuda.h
  * @brief		
  * @author		Jeong Hoon (Sian) Choi
  * @version		1.0.0
@@ -10,8 +10,8 @@
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 //#pragma comment(lib, "libpthread.so")
 
-#ifndef _HEADER_SAMPLECUH_
-#define _HEADER_SAMPLECUH_
+#ifndef _HEADER_SAMPLE_CUDAH_
+#define _HEADER_SAMPLE_CUDAH_
 
 /* OS dependent */
 #define OS_WINDOWS	0
@@ -98,10 +98,8 @@ extern "C" {
 /* Declaration */
 
 /* Functions declaration */
-__device__ void device(void);
 
-__global__ void kernel(void);
-
+void kernel_call(void);
 
 /*
 #ifdef __cplusplus
