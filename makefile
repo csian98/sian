@@ -52,7 +52,7 @@ $(BUILD_DIR)/%.cu.o: %.cu
 	mkdir -p $(dir $@)
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
-.PHONY: exec clean clean_lib
+.PHONY: exec exec_debug clean clean_lib
 clean:
 	rm -r $(BUILD_DIR)/*
 
@@ -61,6 +61,10 @@ clean_lib:
 
 exec: $(LIB_DIR)/$(LIB_TARGET)
 	$(CXX) -o $(EXEC_TARGET) $(EXEC_SRC) $(CXXFLAGS) $(LDFLAGS)
+	rm $(EXEC_TARGET).d
+
+exec_debug: $(LIB_DIR)/$(LIB_TARGT)
+	$(CXX) -o $(EXEC_TARGET) $(EXEC_SRC) $(CXXFLAGS) $(LDFLAGS) -g
 	rm $(EXEC_TARGET).d
 
 -include $(DEPS)
