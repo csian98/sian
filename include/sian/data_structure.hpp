@@ -582,6 +582,56 @@ bool sian::data_structure::Queue<T, U>::is_empty(void) const {
 	return this->queue.is_empty();
 }
 
+template <typename T>
+sian::data_structure::Hash<T>::Hash(size_t hash_size) : hash_size(hash_size) {
+	this->buckets = new List<T>[hash_size];
+}
+
+template <typename T>
+sian::data_structure::Hash<T>::~Hash(void) noexcept {
+	delete[] this->buckets;
+}
+
+template <typename T>
+void sian::data_structure::Hash<T>::insert(T value) {
+	int idx = this->hash_wrapper(value);
+	this->buckets[idx].push_back(value);
+}
+
+template <typename T>
+void sian::data_structure::Hash<T>::remove(T value) {
+	int idx = this->hash_wrapper(value);
+	Node<T>* ptr = this->buckets[idx].find_value(value);
+	this->buckets[idx].remove(ptr);
+}
+
+template <typename T>
+void sian::data_structure::Hash<T>::remove(Node<T>* ptr) {
+	int idx = this->hash_wrapper(ptr->value);
+	this->buckets[idx].remove(ptr);
+}
+
+template <typename T>
+sian::data_structure::Node<T>* sian::data_structure::Hash<T>::find(T value) const {
+	int idx = this->hash_wrapper(value);
+	return this->buckets[idx].find_value(value);
+}
+
+template <typename T>
+void sian::data_structure::Hash<T>::set_hash_function(int (*new_hash_function)(int)) {
+	this->hash_function = new_hash_function;
+}
+
+template <typename T>
+int sian::data_structure::Hash<T>::default_hash_function(int key) {
+	return key;
+}
+
+template <typename T>
+int sian::data_structure::Hash<T>::hash_wrapper(int key) const {
+	return Hash<T>::hash_function(key) % this->hash_size;
+}
+
 #endif // OS dependency
 
 #endif // Header duplicate

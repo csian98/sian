@@ -269,6 +269,34 @@ namespace sian {
 		private:
 			U queue;
 		};
+
+		template <typename T>
+		class Hash {
+		public:
+			Hash(size_t);
+
+			virtual ~Hash(void) noexcept;
+
+			void insert(T);
+
+			void remove(T);
+
+			void remove(Node<T>*);
+
+			Node<T>* find(T) const;
+
+			void set_hash_function(int (*)(int));
+		private:
+			static int default_hash_function(int);
+
+			int hash_wrapper(int) const;
+			
+			int (*hash_function)(int) = &default_hash_function;
+			
+			const size_t hash_size;
+
+			List<T>* buckets;
+		};
 	}
 }
 
