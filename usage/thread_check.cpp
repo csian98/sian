@@ -1,10 +1,10 @@
 
 /**
- * @file		main.cpp
- * @brief		
+ * @file		thread_check.cpp
+ * @brief		find efficient thread number
  * @author  	Jeong Hoon (Sian) Choi
  * @version 	1.0.0
- * @date		2024-04-03
+ * @date		2024-05-23
  */
 
 /* Copyright (C)

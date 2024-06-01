@@ -29,7 +29,9 @@
 #include <algorithm>
 #include <numeric>
 
+#include <random>
 #include <limits>
+#include <map>
 
 #include "sian/data_structure.h"
 
@@ -98,7 +100,7 @@ namespace sian {
 		void heap_sort(T*, int);
 
 		template <typename T>
-		int _partition(T*, int, int);
+		[[nodiscard]] int _partition(T*, int, int);
 		
 		template <typename T>
 		void quick_sort(T*, int, int);
@@ -110,6 +112,40 @@ namespace sian {
 		void radix_sort(int*, int);
 
 		void bucket_sort(int*, int);
+	}
+
+	namespace shuffle {
+		template <typename T>
+		void permute_by_sorting(T*, int);
+
+		template <typename T>
+		void randomized_in_place(T*, int);
+	}
+
+	namespace selection {
+		template <typename T>
+		[[nodiscard]] T min(T*, int);
+
+		template <typename T>
+		[[nodiscard]] T max(T*, int);
+
+		template <typename T>
+		[[nodiscard]] std::pair<T, T> minmax(T*, int);
+
+		template <typename T>
+	    [[nodiscard]] T select(T*, int, int, int);
+
+		template <typename T>
+		[[nodiscard]] T _median(T*, const int);
+
+		template <typename T>
+		[[nodiscard]] T _get_median(T*, const int);
+
+		template <typename T>
+		[[nodiscard]] T _partition_with_crt(T*, int, int);
+		
+		template <typename T>
+		[[nodiscard]] T improved_select(T*, int, int);
 	}
 }
 

@@ -65,6 +65,6 @@ exec: $(LIB_DIR)/$(LIB_TARGET)
 
 exec_debug: $(LIB_DIR)/$(LIB_TARGT)
 	$(CXX) -o $(EXEC_TARGET) $(EXEC_SRC) $(CXXFLAGS) $(LDFLAGS) -g
-	rm $(EXEC_TARGET).d
+	rm -r $(EXEC_TARGET).d #$(EXEC_TARGET).dSYM
 
 -include $(DEPS)

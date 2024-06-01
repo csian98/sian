@@ -30,6 +30,7 @@
 #include <numeric>
 #include <cmath>
 
+#include <ostream>
 #include <optional>
 
 #include <initializer_list>
@@ -80,6 +81,18 @@ extern "C" {
 
 namespace sian {
     namespace data_structure {
+		class data_structure_error : std::exception {
+		public:
+			data_structure_error(const std::string& msg) : msg(msg) {}
+
+			virtual const char* what(void) {
+				return msg.c_str();
+			}
+
+		private:
+			std::string msg;
+		};
+		
 		template <typename T>
 		class Heap {
 		public:
@@ -89,7 +102,7 @@ namespace sian {
 
 			Heap(T*, int);
 
-			~Heap(void) noexcept;
+			virtual ~Heap(void) noexcept;
 
 			int get_heap_size(void) const;
 
@@ -107,7 +120,7 @@ namespace sian {
 			
 			T* tree;
 
-			int heap_size, heap_max;
+			size_t heap_size, heap_max;
 		};
 
 		template <typename T>
@@ -119,12 +132,22 @@ namespace sian {
 
 		template <typename T>
 		class List {
+			friend std::ostream& operator<<(std::ostream& out, const List<T>& list) {
+				Node<T>* ptr = list.begin;
+				while (ptr) {
+					out << ptr->value << " ";
+					ptr = ptr->next;
+				}
+				out << std::endl;
+				
+				return out;
+			}
 		public:
 			List(void);
 
 			List(std::initializer_list<T>);
 
-			~List(void) noexcept;
+			virtual ~List(void) noexcept;
 
 			Node<T>* front(void) const;
 
@@ -136,11 +159,115 @@ namespace sian {
 
 			void insert_sorted(T);
 
+			void remove(Node<T>*);
+
+			Node<T>* find_value(T) const;
+
+			Node<T>* find_index(int) const;
+
 			Node<T>* operator[](int) const;
 		private:
 			Node<T>* begin = nullptr;
 			
 			Node<T>* end = nullptr;
+		};
+
+		template <typename T>
+		class Vector {
+		public:
+			Vector(void);
+
+			Vector(std::initializer_list<T> list);
+
+			virtual ~Vector(void) noexcept;
+			
+		    void push_back(T);
+
+		    void push_front(T);
+
+		    T pop_back(void);
+
+		    T pop_front(void);
+
+		    bool is_empty(void) const;
+
+		    T operator[](int) const;
+		private:
+			void realloc(void);
+			
+			void realloc(int size);
+
+			int binary_round_up(int);
+
+			size_t size = 0, capacity = 0;
+			
+			T* vector = nullptr;;
+		};
+
+		template <typename T>
+		class Circle {
+		public:
+			Circle(void);
+
+			Circle(std::initializer_list<T>);
+
+			virtual ~Circle(void) noexcept;
+
+			void push_back(T);
+
+			void push_front(T);
+
+			T pop_back(void);
+
+			T pop_front(void);
+
+			bool is_empty(void) const;
+
+			T operator[](int) const;
+		private:
+			void realloc(void);
+
+			void realloc(int);
+
+			int binary_round_up(int);
+
+			size_t size = 0, capacity = 0;
+			
+			int head = 0, tail = 0;
+
+			T* vector = nullptr;
+		};
+
+		template <typename T, typename U = Circle<T>>
+		class Stack {
+		public:
+			Stack(void);
+
+			virtual ~Stack(void) noexcept = default;
+
+			T pop(void);
+
+			void push(T);
+
+			bool is_empty(void) const;
+		private:
+			U stack;
+		};
+
+		template <typename T, typename U = Circle<T>>
+		class Queue {
+		public:
+			Queue(void);
+
+			virtual ~Queue(void) noexcept = default;
+
+			T pop(void);
+
+			void push(T);
+
+			bool is_empty(void) const;
+		private:
+			U queue;
 		};
 	}
 }

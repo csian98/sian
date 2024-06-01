@@ -1,6 +1,6 @@
 /**
- * @File		main.cu
- * @brief		
+ * @File		process_speed_check.cu
+ * @brief		single thread, multi thread and SIMT GPU
  * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-05-19
