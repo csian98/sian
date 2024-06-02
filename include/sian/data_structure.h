@@ -32,6 +32,7 @@
 
 #include <ostream>
 #include <optional>
+#include <variant>
 
 #include <initializer_list>
 #include <vector>
@@ -143,6 +144,9 @@ namespace sian {
 				return out;
 			}
 		public:
+			typedef Node<T>* element_pointer;
+			typedef const Node<T>* const_element_pointer;
+			
 			List(void);
 
 			List(std::initializer_list<T>);
@@ -153,6 +157,8 @@ namespace sian {
 
 			Node<T>* back(void) const;
 
+			void push_front(T value);
+			
 			void push_back(T value);
 
 			void insert_next(Node<T>*, T);
@@ -270,9 +276,18 @@ namespace sian {
 			U queue;
 		};
 
+		namespace hash_functions {
+		    int multiply_hash_function(int);
+			
+			int universal_hash_function(int);
+		}
+		
 		template <typename T>
 		class Hash {
 		public:
+			typedef Node<T>* element_pointer;
+			typedef const Node<T>* const_element_pointer;
+			
 			Hash(size_t);
 
 			virtual ~Hash(void) noexcept;
@@ -286,11 +301,15 @@ namespace sian {
 			Node<T>* find(T) const;
 
 			void set_hash_function(int (*)(int));
+
+			static inline int multiply_hash_function(int);
 		private:
-			static int default_hash_function(int);
+			void change_hash_size(int);
+			
+			static inline int default_hash_function(int);
 
 			int hash_wrapper(int) const;
-			
+
 			int (*hash_function)(int) = &default_hash_function;
 			
 			const size_t hash_size;

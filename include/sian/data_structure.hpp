@@ -179,6 +179,22 @@ sian::data_structure::List<T>::back(void) const {
 }
 
 template <typename T>
+void sian::data_structure::List<T>::push_front(T value) {
+	Node<T>* new_node = new Node<T>;
+
+	new_node->value = value;
+
+	if (this->begin) {
+		new_node->next = this->begin;
+		this->begin->prev = new_node;
+		this->begin = new_node;
+	} else {
+		this->begin = new_node;
+		this->end = new_node;
+	}
+}
+
+template <typename T>
 void sian::data_structure::List<T>::push_back(T value) {
 	Node<T>* new_node = new Node<T>;
 	
@@ -595,7 +611,7 @@ sian::data_structure::Hash<T>::~Hash(void) noexcept {
 template <typename T>
 void sian::data_structure::Hash<T>::insert(T value) {
 	int idx = this->hash_wrapper(value);
-	this->buckets[idx].push_back(value);
+	this->buckets[idx].push_front(value);
 }
 
 template <typename T>
@@ -618,6 +634,12 @@ sian::data_structure::Node<T>* sian::data_structure::Hash<T>::find(T value) cons
 }
 
 template <typename T>
+void sian::data_structure::Hash<T>::change_hash_size(int hash_size) {
+	this->~Hash();
+	this->Hash(hash_size);
+}
+
+template <typename T>
 void sian::data_structure::Hash<T>::set_hash_function(int (*new_hash_function)(int)) {
 	this->hash_function = new_hash_function;
 }
@@ -629,7 +651,7 @@ int sian::data_structure::Hash<T>::default_hash_function(int key) {
 
 template <typename T>
 int sian::data_structure::Hash<T>::hash_wrapper(int key) const {
-	return Hash<T>::hash_function(key) % this->hash_size;
+	return this->hash_function(key) % this->hash_size;
 }
 
 #endif // OS dependency

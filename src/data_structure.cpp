@@ -44,44 +44,35 @@ func:
 
 /* Data structures definition - struct & class */
 
-/*
 
-Sample::Sample(const Sample& src) {
-	// Deep Copy
-}
-
-Sample& Sample::operator=(const Sample& src) {
-	if(this == &src) {
-		return *this;
-	}
-	
-	Sample temp(src);
-	swap(*this, temp);
-	return *this;
-}
-
-Sample::Sample(Sample&& src) noexcept : Sample() {
-	swap(*this, src);
-}
-
-Sample& Sample::operator=(Sample&& src) noexcept {
-	Sample temp(std::move(src));
-	swap(*this, temp);
-	return *this;
-}
-
-*/
 
 /* Functions definition */
 
-/*
+int sian::data_structure::hash_functions::multiply_hash_function(int key) {
+	static const float A = (std::sqrt(5) -1) / 2;
+	static const int using_last_bits_num = 8;
+	static const int int_bit_size = sizeof(unsigned int) * 8;
+	auto digit_count = [](int number) {
+		int digit = 0;
+		while (number) {
+			digit++;
+			number /= 10;
+		}
+		return digit;
+	};
+	
+	static const int maximum_digit =
+		std::pow(10.0, digit_count(std::numeric_limits<int>::max()) - 1);
+	
+	float decimal = static_cast<float>(key) * A;
+    decimal = decimal - static_cast<int>(decimal);
+	decimal *= maximum_digit;
 
-void swap(Sample& lhs, Sample& rhs) noexcept {
-	// shallow copy
-    // using std::swap;
+	int shift_num = int_bit_size - using_last_bits_num;
+	int last_bits = (static_cast<unsigned int>(decimal) << shift_num) >> shift_num;
+
+	return last_bits;
 }
-
-*/
 
 #endif // OS dependency
 
