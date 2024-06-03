@@ -21,11 +21,27 @@
 /* Inline & Template Definition */
 
 template <typename T>
+int sian::data_structure::hash_functions::HashFunction<T>::change_to_int(const T& element) const {
+	int t_type_size = sizeof(T);
+	int trans_t_type = 0;
+	const int* ptr = reinterpret_cast<const int*>(&element);
+	if (t_type_size > sizeof(int)) {
+		for (int i = 0; i < t_type_size / sizeof(int); ++i) {
+			trans_t_type += *(ptr + i);
+		}
+	} else {
+		trans_t_type += *ptr;
+	}
+	return trans_t_type;
+}
+
+template <typename T>
 sian::data_structure::hash_functions::DefaultHashFunction<T>::DefaultHashFunction(size_t hash_size) : m_hash_size(hash_size) {}
 
 template <typename T>
 size_t sian::data_structure::hash_functions::DefaultHashFunction<T>::operator()(const T& key) const {
-	return key % this->m_hash_size;
+	int trans_key = this->change_to_int(key);
+	return trans_key % this->m_hash_size;
 }
 
 template <typename T>
@@ -35,12 +51,13 @@ int sian::data_structure::hash_functions::DefaultHashFunction<T>::hash_size(void
 
 template <typename T>
 sian::data_structure::hash_functions::MultiplyHashFunction<T>::MultiplyHashFunction(size_t using_bits) : using_bits(using_bits), m_hash_size(std::pow(2, using_bits)), int_bit_size(sizeof(unsigned int) * 8) {
-	this->int_maximum_digit = std::pow(10.0, this->digits_count(std::numeric_limits<int>::max()) - 4);
+	this->int_maximum_digit = std::pow(10.0, this->digits_count(std::numeric_limits<int>::max()) - 2);
 }
 
 template <typename T>
 size_t sian::data_structure::hash_functions::MultiplyHashFunction<T>::operator()(const T& key) const {
-	float decimal = static_cast<float>(key) * this->A;
+	unsigned int trans_key = this->change_to_int(key);
+	double decimal = static_cast<double>(trans_key) * this->A;
 	decimal = decimal - static_cast<int>(decimal);
 	decimal *= this->int_maximum_digit;
 
@@ -76,7 +93,8 @@ sian::data_structure::hash_functions::UniversalHashFunction<T>::UniversalHashFun
 
 template <typename T>
 size_t sian::data_structure::hash_functions::UniversalHashFunction<T>::operator()(const T& key) const {
-	return ((this->a * key + this->b) % this->prime) % this->m_hash_size;
+	int trans_key = this->change_to_int(key);
+	return ((this->a * trans_key + this->b) % this->prime) % this->m_hash_size;
 }
 
 template <typename T>
@@ -117,13 +135,13 @@ sian::data_structure::HashTable<T>::~HashTable(void) noexcept {
 }
 
 template <typename T>
-void sian::data_structure::HashTable<T>::insert(T value) {
+void sian::data_structure::HashTable<T>::insert(T& value) {
 	int idx = this->hash_wrapper(value);
 	this->buckets[idx].push_front(value);
 }
 
 template <typename T>
-void sian::data_structure::HashTable<T>::remove(T value) {
+void sian::data_structure::HashTable<T>::remove(T& value) {
 	int idx = this->hash_wrapper(value);
 	Node<T>* ptr = this->buckets[idx].find_value(value);
 	this->buckets[idx].remove(ptr);
@@ -136,7 +154,7 @@ void sian::data_structure::HashTable<T>::remove(Node<T>* ptr) {
 }
 
 template <typename T>
-sian::data_structure::Node<T>* sian::data_structure::HashTable<T>::find(T value) const {
+sian::data_structure::Node<T>* sian::data_structure::HashTable<T>::find(T& value) const {
 	int idx = this->hash_wrapper(value);
 	return this->buckets[idx].find_value(value);
 }
@@ -147,18 +165,18 @@ size_t sian::data_structure::HashTable<T>::hash_size(void) const {
 }
 
 template <typename T>
-int sian::data_structure::HashTable<T>::bucket_num(T key) const {
+int sian::data_structure::HashTable<T>::bucket_num(T& key) const {
 	return this->hash_wrapper(key);
 }
 
 template <typename T>
-int sian::data_structure::HashTable<T>::hash_wrapper(T key) const {
+int sian::data_structure::HashTable<T>::hash_wrapper(T& key) const {
 	return (*this->hash_function)(key);
 }
 
 template <typename T>
 sian::data_structure::OpenAddressing<T>::OpenAddressing(hash_functions::HashFunction<T>* hash_function) : hash_function(hash_function), m_hash_size(hash_function->hash_size()) {
-	this->vector = new std::optional<int>[this->m_hash_size];
+	this->vector = new std::optional<T>[this->m_hash_size];
 }
 
 template <typename T>
@@ -167,7 +185,7 @@ sian::data_structure::OpenAddressing<T>::~OpenAddressing(void) noexcept {
 }
 
 template <typename T>
-void sian::data_structure::OpenAddressing<T>::insert(T key) {
+void sian::data_structure::OpenAddressing<T>::insert(T& key) {
 	int idx = 0;
 	do {
 		int check = this->hash_wrapper(key, idx);
@@ -182,7 +200,7 @@ void sian::data_structure::OpenAddressing<T>::insert(T key) {
 }
 
 template <typename T>
-std::optional<int> sian::data_structure::OpenAddressing<T>::search(T key) const {
+std::optional<int> sian::data_structure::OpenAddressing<T>::search(T& key) const {
 	int idx = 0, check;
 	do {
 	    check = this->hash_wrapper(key, idx);
@@ -190,6 +208,16 @@ std::optional<int> sian::data_structure::OpenAddressing<T>::search(T key) const 
 		idx++;
 	} while (this->vector[check] && idx == this->m_hash_size);
 	return std::nullopt;
+}
+
+template <typename T>
+size_t sian::data_structure::OpenAddressing<T>::hash_size(void) const {
+	return this->m_hash_size;
+}
+
+template <typename T>
+int sian::data_structure::OpenAddressing<T>::bucket_num(T& key, int idx) const {
+	return this->hash_wrapper(key, idx);
 }
 
 template <typename T>
@@ -215,7 +243,7 @@ T sian::data_structure::OpenAddressing<T>::operator[](const int idx) const {
 }
 
 template <typename T>
-int sian::data_structure::OpenAddressing<T>::hash_wrapper(T key, int idx) const {
+int sian::data_structure::OpenAddressing<T>::hash_wrapper(T& key, int idx) const {
 	return ((*this->hash_function)(key) + this->c1 * idx + this->c2 * idx * idx) % this->m_hash_size;
 }
 
@@ -229,12 +257,12 @@ sian::data_structure::DoubleHashTable<T>::DoubleHashTable(hash_functions::HashFu
 }
 
 template <typename T>
-void sian::data_structure::DoubleHashTable<T>::insert(T key) {
+void sian::data_structure::DoubleHashTable<T>::insert(T& key) {
 	this->hash_tables[this->hash_wrapper(key)].insert(key);
 }
 
 template <typename T>
-void sian::data_structure::DoubleHashTable<T>::remove(T key) {
+void sian::data_structure::DoubleHashTable<T>::remove(T& key) {
 	this->hash_tables[this->hash_wrapper(key)].remove(key);
 }
 
@@ -244,22 +272,23 @@ void sian::data_structure::DoubleHashTable<T>::remove(Node<T>* node) {
 }
 
 template <typename T>
-sian::data_structure::Node<T>* sian::data_structure::DoubleHashTable<T>::find(T key) const {
+sian::data_structure::Node<T>* sian::data_structure::DoubleHashTable<T>::find(T& key) const {
 	return this->hash_tables[this->hash_wrapper(key)].find(key);
 }
 
 template <typename T>
 size_t sian::data_structure::DoubleHashTable<T>::hash_size(void) const {
-	return this->m_hash_size;
+	return this->m_hash_size * this->hash_function->hash_size();
 }
 
 template <typename T>
-int sian::data_structure::DoubleHashTable<T>::bucket_num(T key) const {
-	return this->wrapper(key);
+int sian::data_structure::DoubleHashTable<T>::bucket_num(T& key) const {
+	int idx = this->hash_wrapper(key);
+	return idx * this->m_hash_size + this->hash_tables[idx].bucket_num(key);
 }
 
 template <typename T>
-int sian::data_structure::DoubleHashTable<T>::hash_wrapper(T key) const {
+int sian::data_structure::DoubleHashTable<T>::hash_wrapper(T& key) const {
 	return (*this->hash_function)(key);
 }
 

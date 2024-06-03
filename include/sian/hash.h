@@ -83,6 +83,9 @@ namespace sian {
 				virtual size_t operator()(const T&) const = 0;
 
 				virtual int hash_size(void) const = 0;
+				
+			protected:
+				virtual int change_to_int(const T&) const;
 			};
 
 			template <typename T>
@@ -111,6 +114,9 @@ namespace sian {
 				int digits_count(int) const;
 				
 				const float A = (std::sqrt(5) - 1) / 2;
+
+				const int prime = 511;
+				
 				const size_t using_bits, m_hash_size,
 					int_bit_size;
 				int int_maximum_digit;
@@ -138,15 +144,16 @@ namespace sian {
 			public:
 				DuplicateHashFunction(HashFunction<T>*, HashFunction<T>*);
 
-				HashFunction<T>* hash_function1;
-
-				HashFunction<T>* hash_function2;
-
+				
 				virtual size_t operator()(const T&) const override;
 
 				virtual int hash_size(void) const override;
 				
 			private:
+				HashFunction<T>* hash_function1;
+
+				HashFunction<T>* hash_function2;
+				
 				const size_t m_hash_size;
 
 				int c = 0;
@@ -156,6 +163,7 @@ namespace sian {
 		template <typename T>
 		class HashTable {
 		public:
+			typedef T value_type;
 			typedef Node<T>* element_pointer;
 			typedef const Node<T>* const_element_pointer;
 			
@@ -163,20 +171,20 @@ namespace sian {
 
 			virtual ~HashTable(void) noexcept;
 
-			void insert(T);
+			void insert(T&);
 
-			void remove(T);
+			void remove(T&);
 
 			void remove(Node<T>*);
 
-			Node<T>* find(T) const;
+			Node<T>* find(T&) const;
 
 			size_t hash_size(void) const;
 
-			int bucket_num(T) const;
+			int bucket_num(T&) const;
 
 		private:
-			int hash_wrapper(T) const;
+			int hash_wrapper(T&) const;
 			
 			hash_functions::HashFunction<T>* hash_function;
 			//int (*hash_function)(int) = &default_hash_function;
@@ -187,13 +195,19 @@ namespace sian {
 		template <typename T>
 		class OpenAddressing {
 		public:
+			typedef T value_type;
+			
 			OpenAddressing(hash_functions::HashFunction<T>*);
 
 			virtual ~OpenAddressing(void) noexcept;
 
-			void insert(T);
+			void insert(T&);
 
-			std::optional<int> search(T) const;
+			std::optional<int> search(T&) const;
+
+			size_t hash_size(void) const;
+
+			int bucket_num(T&, int idx = 0) const;
 
 			void set_c1_c2(void);
 			
@@ -202,7 +216,7 @@ namespace sian {
 			T operator[](const int) const;
 			
 		private:
-			int hash_wrapper(T, int) const;
+			int hash_wrapper(T&, int) const;
 			
 			hash_functions::HashFunction<T>* hash_function;
 
@@ -216,6 +230,7 @@ namespace sian {
 		template <typename T>
 		class DoubleHashTable {
 		public:
+			typedef T value_type;
 			typedef Node<T>* element_pointer;
 			typedef const Node<T>* const_element_pointer;
 			
@@ -223,20 +238,20 @@ namespace sian {
 
 			virtual ~DoubleHashTable(void) noexcept = default;
 
-			void insert(T);
+			void insert(T&);
 
-			void remove(T);
+			void remove(T&);
 
 			void remove(Node<T>*);
 
-			Node<T>* find(T) const;
+			Node<T>* find(T&) const;
 
 			size_t hash_size(void) const;
 
-			int bucket_num(T) const;
+			int bucket_num(T&) const;
 			
 		private:
-			int hash_wrapper(T) const;
+			int hash_wrapper(T&) const;
 
 		    hash_functions::HashFunction<T>* hash_function;
 
