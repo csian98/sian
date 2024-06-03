@@ -6,7 +6,7 @@ EXAMPLEPATH="./example/"
 
 echo -n "Enter source file name (without extension): "
 read FILE
-echo -n "Cuda project (y/n)"
+echo -n "Cuda project (y/n): "
 read ISCUDA
 echo -n "Require hpp file (y/n): "
 read ISHPP

@@ -2,10 +2,12 @@
 EXEC_TARGET := main
 EXEC_SRC := main.cpp
 LIB_TARGET := libsian.a
+#SHD_LIB_TARGET := libsian.so
 CC := clang
 CXX := c++
 NVCC := nvcc
 AR := ar
+#LD := ld
 
 # DIR_STRUCTURE
 BUILD_DIR := build
@@ -29,9 +31,11 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 # Flags
 CFLAGS := $(INC_FLAGS) -MMD -MP
 CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP
+#SHD_CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP -fPIC
 NVCCFLAGS := $(INC_FLAGS)
 LDFLAGS := -L/Users/csian/projects/sian/lib -lsian
 ARFLAGS := crs
+#SHD_LDFLAGS := -shared
 
 IS_NVCC := $(notdir $(shell which $(NVCC) 2> /dev/null))
 $(info $(IS_NVCC))

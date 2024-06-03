@@ -1,12 +1,12 @@
 /**
- * @file		data_structure.cpp
- * @brief		basic data structures (learning purpose source codes)
+ * @file		hash.cpp
+ * @brief		Learning Objectives Basic Data Structures
  * @author		Jeong Hoon (Sian) Choi
  * @version		1.0.0
- * @date		2024-05-29
+ * @date		2024-06-02
  */
 
-#include "sian/data_structure.h"
+#include "sian/hash.h"
 
 /* C & CPP */
 /*
@@ -44,7 +44,44 @@ func:
 
 /* Data structures definition - struct & class */
 
+/*
+
+Sample::Sample(const Sample& src) {
+	// Deep Copy
+}
+
+Sample& Sample::operator=(const Sample& src) {
+	if(this == &src) {
+		return *this;
+	}
+	
+	Sample temp(src);
+	swap(*this, temp);
+	return *this;
+}
+
+Sample::Sample(Sample&& src) noexcept : Sample() {
+	swap(*this, src);
+}
+
+Sample& Sample::operator=(Sample&& src) noexcept {
+	Sample temp(std::move(src));
+	swap(*this, temp);
+	return *this;
+}
+
+*/
+
 /* Functions definition */
+
+/*
+
+void swap(Sample& lhs, Sample& rhs) noexcept {
+	// shallow copy
+    // using std::swap;
+}
+
+*/
 
 #endif // OS dependency
 

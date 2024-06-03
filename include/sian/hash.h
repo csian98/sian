@@ -1,9 +1,9 @@
 /**
  * @file		hash.h
- * @brief		HASH functions for association container
+ * @brief		Learning Objectives Basic Data Structures
  * @author		Jeong Hoon (Sian) Choi
  * @version		1.0.0
- * @date		2024-05-08
+ * @date		2024-06-02
  */
 	 
 //#pragma once
@@ -24,6 +24,13 @@
 #endif
 
 /* Include */
+
+#include <random>
+#include <limits>
+#include <optional>
+
+#include "sian/data_structure.h"
+#include "sian/algorithm.h"
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -65,19 +72,183 @@ extern "C" {
 /* ASM codes */
 // extern "C" int func(int x, int y);
 
-/* Data structures definition - struct & class */
+/* Data structures declaration - struct & class */
 
 namespace sian {
-	template <typename T>
-	class custom_hash {
-		virtual size_t operator()(const T& key) = 0;
-	};
+	namespace data_structure {
+		namespace hash_functions {
+			template <typename T>
+			class HashFunction {
+			public:
+				virtual size_t operator()(const T&) const = 0;
+
+				virtual int hash_size(void) const = 0;
+			};
+
+			template <typename T>
+			class DefaultHashFunction : public HashFunction<T> {
+			public:
+				DefaultHashFunction(size_t hash_size = 128);
+
+				virtual size_t operator()(const T&) const override;
+
+				virtual int hash_size(void) const override;
+				
+			private:
+				const size_t m_hash_size;
+			};
+
+			template <typename T>
+			class MultiplyHashFunction : public HashFunction<T> {
+			public:
+				MultiplyHashFunction(size_t using_bits = 8);
+
+				virtual size_t operator()(const T&) const override;
+
+				virtual int hash_size(void) const override;
+
+			private:
+				int digits_count(int) const;
+				
+				const float A = (std::sqrt(5) - 1) / 2;
+				const size_t using_bits, m_hash_size,
+					int_bit_size;
+				int int_maximum_digit;
+			};
+
+			template <typename T>
+			class UniversalHashFunction : public HashFunction<T> {
+			public:
+				UniversalHashFunction(size_t, int prime = 1999);
+
+				virtual size_t operator()(const T&) const override;
+
+				virtual int hash_size(void) const override;
+				
+			private:
+				const size_t m_hash_size;
+				
+				const int prime;
+
+				int a = 0, b = 0;
+			};
+
+			template <typename T>
+			class DuplicateHashFunction : public HashFunction<T> {
+			public:
+				DuplicateHashFunction(HashFunction<T>*, HashFunction<T>*);
+
+				HashFunction<T>* hash_function1;
+
+				HashFunction<T>* hash_function2;
+
+				virtual size_t operator()(const T&) const override;
+
+				virtual int hash_size(void) const override;
+				
+			private:
+				const size_t m_hash_size;
+
+				int c = 0;
+			};
+		}
+		
+		template <typename T>
+		class HashTable {
+		public:
+			typedef Node<T>* element_pointer;
+			typedef const Node<T>* const_element_pointer;
+			
+			HashTable(hash_functions::HashFunction<T>*);
+
+			virtual ~HashTable(void) noexcept;
+
+			void insert(T);
+
+			void remove(T);
+
+			void remove(Node<T>*);
+
+			Node<T>* find(T) const;
+
+			size_t hash_size(void) const;
+
+			int bucket_num(T) const;
+
+		private:
+			int hash_wrapper(T) const;
+			
+			hash_functions::HashFunction<T>* hash_function;
+			//int (*hash_function)(int) = &default_hash_function;
+
+			List<T>* buckets;
+		};
+
+		template <typename T>
+		class OpenAddressing {
+		public:
+			OpenAddressing(hash_functions::HashFunction<T>*);
+
+			virtual ~OpenAddressing(void) noexcept;
+
+			void insert(T);
+
+			std::optional<int> search(T) const;
+
+			void set_c1_c2(void);
+			
+			void set_c1_c2(const int c1, const int c2);
+
+			T operator[](const int) const;
+			
+		private:
+			int hash_wrapper(T, int) const;
+			
+			hash_functions::HashFunction<T>* hash_function;
+
+			const size_t m_hash_size;
+
+			int c1 = 1, c2 = 0;
+			
+			std::optional<T>* vector;
+		};
+
+		template <typename T>
+		class DoubleHashTable {
+		public:
+			typedef Node<T>* element_pointer;
+			typedef const Node<T>* const_element_pointer;
+			
+			DoubleHashTable(hash_functions::HashFunction<T>*, hash_functions::HashFunction<T>*);
+
+			virtual ~DoubleHashTable(void) noexcept = default;
+
+			void insert(T);
+
+			void remove(T);
+
+			void remove(Node<T>*);
+
+			Node<T>* find(T) const;
+
+			size_t hash_size(void) const;
+
+			int bucket_num(T) const;
+			
+		private:
+			int hash_wrapper(T) const;
+
+		    hash_functions::HashFunction<T>* hash_function;
+
+			const size_t m_hash_size;
+			
+			std::vector<HashTable<T>> hash_tables;
+		};
+	}
 }
 
+/* Functions declaration */
 
-/* Functions declare */
-
-// void swap(Sample&, Sample&) noexcept;
 
 /*
 #ifdef __cplusplus
@@ -88,6 +259,6 @@ namespace sian {
 #endif // OS dependency
 
 /* Inline & Template Define Header */
-//#include "sample.hpp"
+#include "sian/hash.hpp"
 
 #endif // Header duplicate

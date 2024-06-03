@@ -1,6 +1,6 @@
 /**
  * @file	    algorithm.hpp
- * @brief		basic algorithms (learning purpose source codes)
+ * @brief		Learning Objectives Basic Algorithms
  * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-05-29

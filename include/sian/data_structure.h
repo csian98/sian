@@ -1,6 +1,6 @@
 /**
  * @file		data_structure.h
- * @brief		basic data structures (learning purpose source codes)
+ * @brief	    Learning Objectives Basic Data Structures
  * @author		Jeong Hoon (Sian) Choi
  * @version		1.0.0
  * @date		2024-05-29
@@ -274,47 +274,6 @@ namespace sian {
 			bool is_empty(void) const;
 		private:
 			U queue;
-		};
-
-		namespace hash_functions {
-		    int multiply_hash_function(int);
-			
-			int universal_hash_function(int);
-		}
-		
-		template <typename T>
-		class Hash {
-		public:
-			typedef Node<T>* element_pointer;
-			typedef const Node<T>* const_element_pointer;
-			
-			Hash(size_t);
-
-			virtual ~Hash(void) noexcept;
-
-			void insert(T);
-
-			void remove(T);
-
-			void remove(Node<T>*);
-
-			Node<T>* find(T) const;
-
-			void set_hash_function(int (*)(int));
-
-			static inline int multiply_hash_function(int);
-		private:
-			void change_hash_size(int);
-			
-			static inline int default_hash_function(int);
-
-			int hash_wrapper(int) const;
-
-			int (*hash_function)(int) = &default_hash_function;
-			
-			const size_t hash_size;
-
-			List<T>* buckets;
 		};
 	}
 }
