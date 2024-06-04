@@ -41,7 +41,7 @@
 		<li>
 			<a href="#about-the-project">About The Project</a>
 			<ul>
-				<li><a href="#devleopment-environment">Development Environment</a>
+				<li><a href="#development-environment">Development Environment</a>
 			</ul>
 			<ul>
 				<li><a href="#built-with">Built With</a></li>
@@ -91,13 +91,9 @@
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Development Environment
 * [![macOS][macos-shield]][macos-url]
 * [![Arch Linux][archlinux-shield]][archlinux-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 * [![openSSL][openssl-shield]][openssl-url]
@@ -140,7 +136,7 @@ This is an example of how to list things you need to use the software and how to
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [usages](https://github.com/csian98/repo_name/tree/main/usages)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,7 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/csian98/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,7 +163,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - csian7386@gmail.com
+Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - [csian7386@gmail.com](mailto:csian7386@gmail.com)
 
 Project Link: [https://github.com/csian98/repo_name](https://github.com/csian98/repo_name)
 

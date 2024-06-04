@@ -21,7 +21,7 @@
 	<a href="https://csian98.github.io"><img src="https://img.shields.io/badge/csian98.github.io-grey?logo=Homepage"></a>
 	<a href="https://www.linkedin.com/in/jeong-hoon-choi-086b55288/"><img src="https://img.shields.io/badge/LinkedIn-grey?logo=linkedin"></a>
 	<p align="center">
-	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+	Source code and Libraries for C++, CUDA, Python Linux development environment
 	<br/>
 	<br/>
 	<a href="https://github.com/csian98/sian">
@@ -41,7 +41,7 @@
 		<li>
 			<a href="#about-the-project">About The Project</a>
 			<ul>
-				<li><a href="#devleopment-environment">Development Environment</a>
+				<li><a href="#development-environment">Development Environment</a>
 			</ul>
 			<ul>
 				<li><a href="#built-with">Built With</a></li>
@@ -89,15 +89,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+The sian repository was created for personal library purposes.
+Provides code templates for C++, CUDA, and Python development environments that can be used when managin source codes as a direct file instead of a separate IDE project.
 
 ### Development Environment
 * [![macOS][macos-shield]][macos-url]
 * [![Arch Linux][archlinux-shield]][archlinux-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 * [![openSSL][openssl-shield]][openssl-url]
@@ -140,18 +137,24 @@ This is an example of how to list things you need to use the software and how to
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [usages](https://github.com/csian98/sian/tree/main/usages)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] makefile, *.h, *.cpp, *.hpp, *.cuh, *.cu templates
+- [ ] network protocols such as tcp, ssl, curl, etc.
+  - [ ] c2c server
+- [ ] non-standard data structures
+  - [ ] B-tree
+  - [ ] Red Black tree
+- [ ] standard library extension header
+  - [ ] allocator
+  - [ ] hash_functions
+- [ ] memory & thread pooling
 
-See the [open issues](https://github.com/github_username/sian/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/csian98/sian/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -161,13 +164,14 @@ See the [open issues](https://github.com/github_username/sian/issues) for a full
 
 ## License
 
+Copyright © 2024, *Jeong Hoon Choi* or *Sian*. All rights reserved
 Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact
 
-Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - csian7386@gmail.com
+Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - [csian7386@gmail.com](mailto:csian7386@gmail.com)
 
 Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 
