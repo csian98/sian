@@ -9,7 +9,7 @@
 -->
 <a name="readme-top"></a>
 
-
+[![Language][language-shield]]
 [![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
@@ -26,15 +26,13 @@
     <br />
     <a href="https://github.com/csian98/repo_name"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://csian98.github.io"><img src="https://img.shields.io/badge/csian98.github.io-grey?logo=Homepage"></a>
-    ·
-    <a href="mailto:csian7386@gmail.com"><img src="https://img.shields.io/badge/csian7386@gmail.com-navy?logo=Gmail"></a>
-    ·
-    <a href="https://instagram/csian98"><img src="https://img.shields.io/badge/csian98-navy?logo=Instagram"></a>
-	·
-	<a href="https://www.linkedin.com/in/jeong-hoon-choi-086b55288/"><img src="https://img.shields.io/badge/LinkedIn-navy?logo=linkedin"></a>
-	·
+    <br /> 
+    <a href="mailto:csian7386@gmail.com"><img src="https://img.shields.io/badge/csian7386@gmail.com-grey?logo=Gmail"></a>
+    <a href="https://instagram/csian98"><img src="https://img.shields.io/badge/csian98-grey?logo=Instagram"></a>
+	<a href="https://discord.gg/YhghyDBgKa"><img src="https://img.shields.io/badge/Discord-grey?logo=Discord"></a>
+	<a href="https://csian98.github.io"><img src="https://img.shields.io/badge/csian98.github.io-grey?logo=Homepage"></a>
+	<a href="https://www.linkedin.com/in/jeong-hoon-choi-086b55288/"><img src="https://img.shields.io/badge/LinkedIn-grey?logo=linkedin"></a>
+	<br />
 	<a href="https://github.com/csian98/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
 	<a href="https://github.com/csian98/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
