@@ -11,10 +11,10 @@
 
 <br/>
 <div align="center">
-	<a href="https://github.com/csian98/sian">
-		<img src="images/logo.png" alt="Logo" width="80" height="80">
+	<a href="https://github.com/csian98/repo_name">
+		<img src="src/images/logo.png" alt="Logo" width="80" height="80">
 	</a>
-	<h3 align="center">sian</h3>	
+	<h3 align="center">repo_name</h3>	
 	<a href="mailto:csian7386@gmail.com"><img src="https://img.shields.io/badge/csian7386@gmail.com-grey?logo=Gmail"></a>
 	<a href="https://instagram/csian98"><img src="https://img.shields.io/badge/csian98-grey?logo=Instagram"></a>
 	<a href="https://discord.gg/YhghyDBgKa"><img src="https://img.shields.io/badge/Discord-grey?logo=Discord"></a>
@@ -24,14 +24,14 @@
 	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 	<br/>
 	<br/>
-	<a href="https://github.com/csian98/sian">
+	<a href="https://github.com/csian98/repo_name">
 		<strong>Explore the docs »</strong>
 	</a>
 	<br/>
 	<br/>
-	<a href="https://github.com/csian98/sian/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+	<a href="https://github.com/csian98/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
 	·
-	<a href="https://github.com/csian98/sian/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+	<a href="https://github.com/csian98/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
 	</p>
 </div>
 
@@ -123,7 +123,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/csian/sian.git
+   git clone https://github.com/csian/repo_name.git
    ```
 3. Install NPM packages
    ```sh
@@ -151,7 +151,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/sian/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -169,7 +169,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - csian7386@gmail.com
 
-Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
+Project Link: [https://github.com/csian98/repo_name](https://github.com/csian98/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,13 +181,13 @@ Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[language-shield]: https://img.shields.io/github/languages/top/csian98/sian.svg?style=for-the-badge
-[code-size-shield]: https://img.shields.io/github/languages/code-size/csian98/sian.svg?style=for-the-badge
-[repo-size-shield]: https://img.shields.io/github/repo-size/csian98/sian.svg?style=for-the-badge
-[commit-activity-shield]: https://img.shields.io/github/commit-activity/w/csian98/sian.svg?style=for-the-badge
-[last-commit-shield]: https://img.shields.io/github/last-commit/csian98/sian.svg?style=for-the-badge
-[license-shield]: https://img.shields.io/github/license/csian98/sian.svg?style=for-the-badge
-[license-url]: https://github.com/csian98/sian/blob/main/LICENSE
+[language-shield]: https://img.shields.io/github/languages/top/csian98/repo_name.svg?style=for-the-badge
+[code-size-shield]: https://img.shields.io/github/languages/code-size/csian98/repo_name.svg?style=for-the-badge
+[repo-size-shield]: https://img.shields.io/github/repo-size/csian98/repo_name.svg?style=for-the-badge
+[commit-activity-shield]: https://img.shields.io/github/commit-activity/w/csian98/repo_name.svg?style=for-the-badge
+[last-commit-shield]: https://img.shields.io/github/last-commit/csian98/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/csian98/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/csian98/repo_name/blob/main/LICENSE
 
 [macos-shield]: https://img.shields.io/badge/macOS-000000?logo=macOS
 [macos-url]: https://developer.apple.com/macos
