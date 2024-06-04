@@ -9,10 +9,12 @@
 -->
 <a name="readme-top"></a>
 
-[![email][email-shield][email-url]]
-[![homepage][homepage-shield][homepage-url]]
-[![instagram][instagram-shield][instgram-url]]
-[![License][license-shield][license-url]]
+[![email][email-shield]][email-url]
+[![homepage][homepage-shield]][homepage-url]
+[![instagram][instagram-shield]][instagram-url]
+
+
+[![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
 <br />
