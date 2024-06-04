@@ -9,10 +9,6 @@
 -->
 <a name="readme-top"></a>
 
-[![email][email-shield]][email-url]
-[![homepage][homepage-shield]][homepage-url]
-[![instagram][instagram-shield]][instagram-url]
-
 
 [![MIT License][license-shield]][license-url]
 
@@ -31,11 +27,17 @@
     <a href="https://github.com/csian98/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://csian98.github.io"><img src="https://img.shields.io/badge/csian98.github.io-navy?logo=Homepage"></a>
+    <a href="https://csian98.github.io"><img src="https://img.shields.io/badge/csian98.github.io-grey?logo=Homepage"></a>
     ·
-    <a href="https://github.com/csian98/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="mailto:csian7386@gmail.com"><img src="https://img.shields.io/badge/csian7386@gmail.com-navy?logo=Gmail"></a>
     ·
-    <a href="https://github.com/csian98/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://instagram/csian98"><img src="https://img.shields.io/badge/csian98-navy?logo=Instagram"></a>
+	·
+	<a href="https://www.linkedin.com/in/jeong-hoon-choi-086b55288/"><img src="https://img.shields.io/badge/LinkedIn-navy?logo=linkedin"></a>
+	·
+	<a href="https://github.com/csian98/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+	<a href="https://github.com/csian98/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -201,34 +203,22 @@ Project Link: [https://github.com/csian98/repo_name](https://github.com/csian98/
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[email-shield]: https://img.shields.io/badge/csian7386@gmail.com-navy?logo=Gmail
-[email-url]: mailto:csian7386@gmail.com
-[instagram-shield]: https://img.shields.io/badge/csian98-navy?logo=Instagram
-[instagram-url]: https://instagram.com/csian98
-[homepage-shield]: https://img.shields.io/badge/csian98.github.io-navy?logo=Homepage
-[homepage-url]: https://csian98.github.io
-[linkedin-shield]: https://img.shields.io/badge/LinkedIn-navy?logo=linkedin
-[linkedin-url]: https://www.linkedin.com/in/jeong-hoon-choi-086b55288/
-
+[language-shield]: https://img.shields.io/github/languages/top/csian98/repo_name
+[code-size-shield]: https://img.shields.io/github/languages/code-size/csian98/repo_name
+[repo-size-shield]: https://img.shields.io/github/repo-size/csian98/repo_name
+[commit-activity-shield]: https://img.shields.io/github/commit-activity/w/csian98/repo_name
+[last-commit-shield]: https://img.shields.io/github/last-commit/csian98/repo_name
 [license-shield]: https://img.shields.io/github/license/csian98/repo_name
 [license-url]: https://github.com/csian98/repo_name/blob/main/LICENSE
-[language-shield]: https://img.shields.io/github/languages/top/csian98/repo_name
 
-
-
-
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo_name/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo_name/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo_name/issues
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
