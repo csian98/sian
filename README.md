@@ -65,16 +65,10 @@
 			<a href="#roadmap">Roadmap</a>
 		</li>
 		<li>
-			<a href="#contributing">Contributing</a>
-		</li>
-		<li>
 			<a href="#license">License</a>
 		</li>
 		<li>
 			<a href="#contact">Contact</a>
-		</li>
-		<li>
-			<a href="#acknowledgments">Acknowledgments</a>
 		</li>
   </ol>
 </details>
@@ -87,7 +81,7 @@
 ![last commit][last-commit-shield]
 [![MIT License][license-shield]][license-url]
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Sian Screen Shot](images/screenshot.png)
 
 The sian repository was created for personal library purposes.
 Provides code templates for C++, CUDA, and Python development environments that can be used when managin source codes as a direct file instead of a separate IDE project.
@@ -105,37 +99,56 @@ Provides code templates for C++, CUDA, and Python development environments that 
 
 ## Getting Started
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Makefile source code is provided for use in the GCC or Clang Development environment.
+If Nvidia's nvcc is present in the system, compile the cuh header file and cu source code together.
+
+The _*.h_ extension is a header file extension for all C, C++, and CUDA, and in the case of code required at compile time, such as templates and inline functions, the code was provided at compile time through _*.hpp_ or _*.cuh_ files.
+
+❌ All codes were written based on the author's learning purposes, and it is clearly stated that the codes are not suitable for actual development environments.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+*.key, *.scr, and *.crt files are required for encrypted network communication SSL protocol
+* openssl
   ```sh
-  npm install npm@latest -g
+  openssl genrsa -out [filename] [numbits default: 512]
+  openssl rsa -in [keyfile] -out [keyfile] [encrypt-algorithm recommend: aes256]
+  openssl rsa -in [privatekey] -pubout -out [publickey]
+  
+  openssl req -new -key [keyfile] -out [csr filename]
+  
+  openssl x509 -req -days [expire period] -in [csr file] -signkey [keyfile] -out [crt file]
+  ```
+  
+* nvidia
+  ```sh
+  sudo pacman -Syu cuda-tools nvidia-utils
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/csian/sian.git
    ```
-3. Install NPM packages
+2. Write down your environment on makefile
    ```sh
-   npm install
+   cd sian
+   emacs makefile
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Compile
+   ```sh
+   make				# build sian/lib/libsian.a
+   make exec		# build elf or machO with sian/main.cpp
+   make exec_debug	# build elf or machO with sian/main.cpp for debugging(-g)
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+The _*.cpp_ code files in _sian/usages_ contains example codes that use the library.
+Each code has an Entry Point that includes the main function.
 
 _For more examples, please refer to the [usages](https://github.com/csian98/sian/tree/main/usages)_
 
@@ -144,6 +157,7 @@ _For more examples, please refer to the [usages](https://github.com/csian98/sian
 ## Roadmap
 
 - [ ] makefile, *.h, *.cpp, *.hpp, *.cuh, *.cu templates
+- [ ] utilities including timers and memory & thread pool
 - [ ] network protocols such as tcp, ssl, curl, etc.
   - [ ] c2c server
 - [ ] non-standard data structures
@@ -152,13 +166,8 @@ _For more examples, please refer to the [usages](https://github.com/csian98/sian
 - [ ] standard library extension header
   - [ ] allocator
   - [ ] hash_functions
-- [ ] memory & thread pooling
 
 See the [open issues](https://github.com/csian98/sian/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Contributing
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -177,14 +186,6 @@ Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 [language-shield]: https://img.shields.io/github/languages/top/csian98/sian.svg?style=for-the-badge
 [code-size-shield]: https://img.shields.io/github/languages/code-size/csian98/sian.svg?style=for-the-badge
 [repo-size-shield]: https://img.shields.io/github/repo-size/csian98/sian.svg?style=for-the-badge
@@ -193,23 +194,24 @@ Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 [license-shield]: https://img.shields.io/github/license/csian98/sian.svg?style=for-the-badge
 [license-url]: https://github.com/csian98/sian/blob/main/LICENSE
 
-[macos-shield]: https://img.shields.io/badge/macOS-000000?logo=macOS
+[macos-shield]: https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0
 [macos-url]: https://developer.apple.com/macos
-[archlinux-shield]: https://img.shields.io/badge/Arch%20Linux-1793D1?logo=Arch%20Linux
+[archlinux-shield]: https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=for-the-badge
 [archlinux-url]: https://archlinux.org
 
-[sqlite-shield]: https://img.shields.io/badge/SQLite-003B57?logo=SQLite
-[mariadb-shield]: https://img.shields.io/badge/MariaDB-003545?logo=MariaDB
+[sqlite-shield]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
+[mariadb-shield]: https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white
 [mariadb-url]: https://mariadb.com
-[slack-shield]: https://img.shields.io/badge/Slack-4A154B?logo=Slack
-[OpenAI-shield]: https://img.shields.io/badge/OpenAI-412991?logo=OpenAI
+[mongodb-shield]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
+[OpenAI-shield]: https://img.shields.io/badge/openAI-74aa9c?style=for-the-badge&logo=openai&logoColor=white
 
-[openssl-shield]: https://img.shields.io/badge/OpenSSL-721412?logo=OpenSSL
+[openssl-shield]: https://img.shields.io/badge/OpenSSL-721412?style=for-the-badge&logo=OpenSSL
 [openssl-url]: https://www.openssl.org
-[curl-shield]: https://img.shields.io/badge/curl-073551?logo=curl
+[curl-shield]: https://img.shields.io/badge/curl-073551?style=for-the-badge&logo=curl
 [curl-url]: https://curl.se
 
-[hadoop-shield]: https://img.shields.io/badge/Apache%20Hadoop-66CCFF?logo=Apache%20Hadoop
-[tensorflow-shield]: https://img.shields.io/badge/TensorFlow-FF6F00?logo=TensorFlow
-[keras-shield]: https://img.shields.io/badge/Keras-D00000?logo=Keras
-[pytorch-shield]: https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch
+[hadoop-shield]: https://img.shields.io/badge/Apache%20Hadoop-66CCFF?style=for-the-badge&logo=apachehadoop&logoColor=black
+[tensorflow-shield]: https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white
+[keras-shield]: https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white
+[pytorch-shield]: https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white
