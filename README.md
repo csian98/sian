@@ -189,7 +189,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -198,9 +198,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - csian7386@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -227,9 +227,13 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [email-shield]: https://img.shields.io/badge/csian7386@gmail.com-grey?logo=Gmail
+[email-url]: mailto:csian7386@gmail.com
 [instagram-shield]: https://img.shields.io/badge/csian98-black?logo=Instagram
+[instagram-url]: https:instagram.com/csian98
 [homepage-shield]: https://img.shields.io/badge/csian98.github.io-black?logo=Homepage
+[homepage-url]: https://csian98.github.io
 [linkedin-shield]: https://img.shields.io/badge/LinkedIn-black?logo=linkedin
+[linkedin-url]: https://www.linkedin.com/in/jeong-hoon-choi-086b55288/
 [main_language-shield]: https://img.shields.io/github/languages/top/csian98/sian
 
 
