@@ -1,6 +1,6 @@
 /**
  * @file		binary_tree.h
- * @brief		Learning Objectives Basic Data Structures
+ * @brief	    Binary Tree
  * @author		Jeong Hoon (Sian) Choi
  * @version		1.0.0
  * @date		2024-06-03
@@ -26,9 +26,6 @@
 /* Include */
 
 #include <initializer_list>
-
-#include "sian/data_structure.h"
-#include "sian/algorithm.h"
 
 #if __has_include(<iostream>)
 #include <iostream>
@@ -77,7 +74,9 @@ namespace sian {
 		template <typename T>
 		struct Leaf {
 			Leaf* left = nullptr;
+			
 			Leaf* right = nullptr;
+			
 			Leaf* parent = nullptr;
 			
 			T value = 0;
@@ -95,26 +94,38 @@ namespace sian {
 
 			virtual ~BinaryTree(void) noexcept;
 
-			void insert(const T&);
+			virtual void insert(const T&);
 
-			void remove(Leaf<T>*);
+			virtual void remove(Leaf<T>*);
 
-			void remove(T&);
+			virtual void remove(const T&);
 
-		    Leaf<T>* find(const T&) const;
+		    virtual Leaf<T>* find(const T&) const;
 
-			Leaf<T>* min(void) const;
+			virtual Leaf<T>* min(void) const;
 
-			Leaf<T>* max(void) const;
+			virtual Leaf<T>* max(void) const;
 
-			T min_value(void) const;
+			virtual Leaf<T>* min(Leaf<T>*) const;
 
-			T max_value(void) const;
+			virtual Leaf<T>* max(Leaf<T>*) const;
 
-		private:
-			void inorder_tree_delete(Leaf<T>* ptr);
+			virtual T min_value(void) const;
+
+			virtual T max_value(void) const;
+
+			virtual Leaf<T>* successor(Leaf<T>*) const;
+
+			virtual Leaf<T>* predecessor(Leaf<T>*) const;
+
+			virtual bool is_empty(void) const;
+
+		protected:
+			virtual void inorder_tree_delete(Leaf<T>* ptr);
+
+			virtual void transplant(Leaf<T>*, Leaf<T>*);
 			
-			Leaf<T>* root;
+			Leaf<T>* root = nullptr;
 		};
 	}
 }
