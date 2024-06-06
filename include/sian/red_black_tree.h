@@ -91,13 +91,13 @@ namespace sian {
 
 			virtual Leaf<T>* find(const T&) const override;
 
-			virtual Leaf<T>* min(Leaf<T>*) const override;
-
-			virtual Leaf<T>* max(Leaf<T>*) const override;
-
 			virtual Leaf<T>* min(void) const override;
 
 			virtual Leaf<T>* max(void) const override;
+			
+			virtual Leaf<T>* min(Leaf<T>*) const override;
+
+			virtual Leaf<T>* max(Leaf<T>*) const override;
 
 			virtual Leaf<T>* successor(Leaf<T>*) const override;
 			
@@ -106,7 +106,6 @@ namespace sian {
 			virtual bool is_empty(void) const override;
 			
 		private:
-
 			virtual void transplant(Leaf<T>*, Leaf<T>*) override;
 			
 			virtual void left_rotate(Leaf<T>*);

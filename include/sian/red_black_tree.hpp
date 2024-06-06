@@ -144,6 +144,15 @@ sian::data_structure::RedBlackTree<T>::min(Leaf<T>* leaf) const {
 
 template <typename T>
 sian::data_structure::Leaf<T>*
+sian::data_structure::RedBlackTree<T>::max(void) const {
+	if (this->is_empty())
+		return nullptr;
+	else
+		return this->max(this->root);
+}
+
+template <typename T>
+sian::data_structure::Leaf<T>*
 sian::data_structure::RedBlackTree<T>::max(Leaf<T>* leaf) const {
 	Leaf<T>* ptr = leaf;
 	while (ptr->right != this->nil_leaf) {
@@ -159,15 +168,6 @@ sian::data_structure::RedBlackTree<T>::min(void) const {
 		return nullptr;
 	else
 		return this->min(this->root);
-}
-
-template <typename T>
-sian::data_structure::Leaf<T>*
-sian::data_structure::RedBlackTree<T>::max(void) const {
-	if (this->is_empty())
-		return nullptr;
-	else
-		return this->max(this->root);
 }
 
 template <typename T>
