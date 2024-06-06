@@ -38,12 +38,11 @@ sian::data_structure::RedBlackTree<T>::RedBlackTree(std::initializer_list<T> lis
 
 template <typename T>
 sian::data_structure::RedBlackTree<T>::~RedBlackTree(void) noexcept {
-	if (this->is_empty()) {
-		this->root = nullptr;
-	} else {
-		this->cut_leaf(this->root);
-	}
+    this->inorder_tree_delete(this->root);
+	
 	delete this->nil_leaf;
+
+	this->root = nullptr;
 	this->nil_leaf = nullptr;
 }
 
@@ -206,6 +205,16 @@ bool sian::data_structure::RedBlackTree<T>::is_empty(void) const {
 }
 
 template <typename T>
+void sian::data_structure::RedBlackTree<T>::inorder_tree_delete(Leaf<T>* ptr) {
+	if (ptr != this->nil_leaf) {
+		this->inorder_tree_delete(ptr->left);
+		Leaf<T>* right_ptr = ptr->right;
+		delete ptr;
+		this->inorder_tree_delete(right_ptr);
+	}
+}
+
+template <typename T>
 void sian::data_structure::RedBlackTree<T>::transplant(Leaf<T>* dst, Leaf<T>* src) {
     if (dst->parent == this->nil_leaf) {
 		this->root = src;
@@ -362,21 +371,6 @@ void sian::data_structure::RedBlackTree<T>::remove_fixup(Leaf<T>* ptr) {
 		}
 	}
 	color_black(ptr);
-}
-
-template <typename T>
-void sian::data_structure::RedBlackTree<T>::cut_leaf(Leaf<T>* ptr) {
-	if (ptr->left == this->nil_leaf) {
-		ptr->left = nullptr;
-	} else {
-	    this->cut_leaf(ptr->left);
-	}
-
-	if (ptr->right == this->nil_leaf) {
-		ptr->right = nullptr;
-	} else {
-		this->cut_leaf(ptr->right);
-	}
 }
 
 template <typename T>

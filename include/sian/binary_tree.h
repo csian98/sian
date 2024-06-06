@@ -83,7 +83,31 @@ namespace sian {
 		};
 
 		template <typename T>
-		class BinaryTree {
+		class Tree {
+		public:
+			typedef Leaf<T>* element_pointer;
+			typedef const Leaf<T>* const_element_pointer;
+
+			virtual void insert(const T&) = 0;
+
+			virtual void remove(element_pointer) = 0;
+
+			virtual element_pointer find(const T&) const = 0;
+
+			virtual element_pointer min(element_pointer) const = 0;
+
+			virtual element_pointer max(element_pointer) const = 0;
+
+			virtual bool is_empty(void) const = 0;
+
+		protected:
+			virtual void inorder_tree_delete(element_pointer ptr) = 0;
+			
+			Leaf<T>* root = nullptr;
+		};
+
+		template <typename T>
+		class BinaryTree : public Tree<T> {
 		public:
 			typedef Leaf<T>* element_pointer;
 			typedef const Leaf<T>* const_element_pointer;
@@ -94,38 +118,36 @@ namespace sian {
 
 			virtual ~BinaryTree(void) noexcept;
 
-			virtual void insert(const T&);
+			virtual void insert(const T&) override;
 
-			virtual void remove(Leaf<T>*);
+			virtual void remove(element_pointer) override;
 
 			virtual void remove(const T&);
 
-		    virtual Leaf<T>* find(const T&) const;
+		    virtual element_pointer find(const T&) const override;
 
+			virtual element_pointer min(element_pointer) const override;
+
+			virtual element_pointer max(element_pointer) const override;
+			
 			virtual Leaf<T>* min(void) const;
 
 			virtual Leaf<T>* max(void) const;
-
-			virtual Leaf<T>* min(Leaf<T>*) const;
-
-			virtual Leaf<T>* max(Leaf<T>*) const;
 
 			virtual T min_value(void) const;
 
 			virtual T max_value(void) const;
 
-			virtual Leaf<T>* successor(Leaf<T>*) const;
+			virtual element_pointer successor(element_pointer) const;
 
-			virtual Leaf<T>* predecessor(Leaf<T>*) const;
+			virtual element_pointer predecessor(element_pointer) const;
 
-			virtual bool is_empty(void) const;
+			virtual bool is_empty(void) const override;
 
 		protected:
-			virtual void inorder_tree_delete(Leaf<T>* ptr);
+			virtual void inorder_tree_delete(element_pointer) override;
 
-			virtual void transplant(Leaf<T>*, Leaf<T>*);
-			
-			Leaf<T>* root = nullptr;
+			virtual void transplant(element_pointer, element_pointer);
 		};
 	}
 }

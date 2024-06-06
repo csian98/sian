@@ -26,7 +26,7 @@ sian::data_structure::BinaryTree<T>::BinaryTree(void) {}
 template <typename T>
 sian::data_structure::BinaryTree<T>::BinaryTree(std::initializer_list<T> list) {
     for (auto iter = list.begin(); iter != list.end(); ++iter) {
-		this->insert(list);
+		this->insert(*iter);
 	}
 }
 

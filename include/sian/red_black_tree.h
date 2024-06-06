@@ -77,8 +77,11 @@ namespace sian {
 		};
 
 		template <typename T>
-		class RedBlackTree : public BinaryTree<T> {
+		class RedBlackTree : public Tree<T> {
 		public:
+			typedef Leaf<T>* element_pointer;
+			typedef const Leaf<T>* const_element_pointer;
+		
 			RedBlackTree(void);
 
 			RedBlackTree(std::initializer_list<T>);
@@ -87,36 +90,36 @@ namespace sian {
 
 			virtual void insert(const T&) override;
 
-			virtual void remove(Leaf<T>*) override;
+			virtual void remove(element_pointer) override;
 
-			virtual Leaf<T>* find(const T&) const override;
+			virtual element_pointer find(const T&) const override;
 
-			virtual Leaf<T>* min(void) const override;
+			virtual element_pointer min(element_pointer) const override;
 
-			virtual Leaf<T>* max(void) const override;
+			virtual element_pointer max(element_pointer) const override;
 			
-			virtual Leaf<T>* min(Leaf<T>*) const override;
+			virtual element_pointer min(void) const;
 
-			virtual Leaf<T>* max(Leaf<T>*) const override;
+			virtual element_pointer max(void) const;
 
-			virtual Leaf<T>* successor(Leaf<T>*) const override;
+			virtual element_pointer successor(element_pointer) const;
 			
-			virtual Leaf<T>* predecessor(Leaf<T>*) const override;
+			virtual element_pointer predecessor(element_pointer) const;
 
 			virtual bool is_empty(void) const override;
 			
 		private:
-			virtual void transplant(Leaf<T>*, Leaf<T>*) override;
+			virtual void inorder_tree_delete(element_pointer ptr) override;
 			
-			virtual void left_rotate(Leaf<T>*);
+			virtual void transplant(element_pointer, element_pointer);
+			
+			virtual void left_rotate(element_pointer);
 
-			virtual void right_rotate(Leaf<T>*);
+			virtual void right_rotate(element_pointer);
 
-			virtual void insert_fixup(Leaf<T>*);
+			virtual void insert_fixup(element_pointer);
 
-			virtual void remove_fixup(Leaf<T>*);
-
-			virtual void cut_leaf(Leaf<T>*);
+			virtual void remove_fixup(element_pointer);
 
 			Leaf<T>* nil_leaf = nullptr;
 		};
