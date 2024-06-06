@@ -79,7 +79,7 @@ namespace sian {
 			
 			Leaf* parent = nullptr;
 			
-			T value = 0;
+			T value;
 		};
 
 		template <typename T>
