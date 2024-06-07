@@ -51,57 +51,73 @@
 //	exit(1);
 // }
 
+template <typename T>
+struct Sample {
+	Sample(void) {}
+
+	Sample(int value) : value(value) {}
+	T value;
+
+	bool operator<(const Sample& other) const {
+		return this->value < other.value;
+	}
+
+	bool operator!=(const Sample& other) const {
+		return this->value != other.value;
+	}
+};
+
 int main(int argc, char* argv[]) {
 // 	std::terminate_handler default_terminate =
 //	std::set_terminate(&custom_terminate_fnct);
 	sian::Timer timer(4);
 
-	sian::data_structure::BinaryTree<int> binary_tree_ordered;
-	sian::data_structure::RedBlackTree<int> red_black_tree_ordered;
-	sian::data_structure::BinaryTree<int> binary_tree_unordered;
-	sian::data_structure::RedBlackTree<int> red_black_tree_unordered;
+	sian::data_structure::BinaryTree<Sample<int>> binary_tree_ordered;
+	sian::data_structure::RedBlackTree<Sample<int>> red_black_tree_ordered;
+	sian::data_structure::BinaryTree<Sample<int>> binary_tree_unordered;
+	sian::data_structure::RedBlackTree<Sample<int>> red_black_tree_unordered;
 	
-	size_t size = 1024 * 1024;		// 1 MB
+	size_t size = 1024;		// 1 KB
 	int* list = new int[size];
 	std::iota(list, list + size, 1);
 
 	for (int i = 0; i < size; ++i) {
-		binary_tree_ordered.insert(list[i]);
-		red_black_tree_ordered.insert(list[i]);
+		binary_tree_ordered.insert(Sample<int>(list[i]));
+		red_black_tree_ordered.insert(Sample<int>(list[i]));
 	}
 
 	sian::shuffle::randomized_in_place(list, size);
 	
 	for (int i = 0; i < size; ++i) {
-		binary_tree_unordered.insert(list[i]);
-		red_black_tree_unordered.insert(list[i]);
+		binary_tree_unordered.insert(Sample<int>(list[i]));
+		red_black_tree_unordered.insert(Sample<int>(list[i]));
 	}
 
 	timer[0].set_name("binary tree searching ordered");
 	timer[0].start();
 	for (int i = 0; i < size; ++i) {
-		sian::data_structure::BinaryTree<int>::element_pointer ptr = binary_tree_ordered.find(i);
+		sian::data_structure::BinaryTree<Sample<int>>::element_pointer ptr = binary_tree_ordered.find(Sample<int>(i));
 	}
 	timer[0].stop();
 	
 	timer[1].set_name("red black tree searching ordered");
 	timer[1].start();
 	for (int i = 0; i < size; ++i) {
-		sian::data_structure::RedBlackTree<int>::element_pointer ptr = red_black_tree_ordered.find(i);
+		sian::data_structure::RedBlackTree<Sample<int>>::element_pointer ptr = red_black_tree_ordered.find(Sample<int>(i));
 	}
 	timer[1].stop();
 
 	timer[2].set_name("binary tree searching disordered");
 	timer[2].start();
 	for (int i = 0; i < size; ++i) {
-		sian::data_structure::BinaryTree<int>::element_pointer ptr = binary_tree_unordered.find(i);
+		sian::data_structure::BinaryTree<Sample<int>>::element_pointer ptr = binary_tree_unordered.find(Sample<int>(i));
 	}
 	timer[2].stop();
 
 	timer[3].set_name("red black tree searching disordered");
 	timer[3].start();
 	for (int i = 0; i < size; ++i) {
-		sian::data_structure::RedBlackTree<int>::element_pointer ptr = red_black_tree_unordered.find(i);
+		sian::data_structure::RedBlackTree<Sample<int>>::element_pointer ptr = red_black_tree_unordered.find(Sample<int>(i));
 	}
 	timer[3].stop();
 	
