@@ -108,7 +108,7 @@ namespace sian {
 
 			virtual bool is_empty(void) const override;
 			
-		private:
+		protected:
 			virtual void inorder_tree_delete(element_pointer ptr) override;
 			
 			virtual void transplant(element_pointer, element_pointer);

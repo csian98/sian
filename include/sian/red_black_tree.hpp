@@ -143,21 +143,21 @@ sian::data_structure::RedBlackTree<T>::min(Leaf<T>* leaf) const {
 
 template <typename T>
 sian::data_structure::Leaf<T>*
-sian::data_structure::RedBlackTree<T>::max(void) const {
-	if (this->is_empty())
-		return nullptr;
-	else
-		return this->max(this->root);
-}
-
-template <typename T>
-sian::data_structure::Leaf<T>*
 sian::data_structure::RedBlackTree<T>::max(Leaf<T>* leaf) const {
 	Leaf<T>* ptr = leaf;
 	while (ptr->right != this->nil_leaf) {
 		ptr = ptr->right;
 	}
 	return ptr;
+}
+
+template <typename T>
+sian::data_structure::Leaf<T>*
+sian::data_structure::RedBlackTree<T>::max(void) const {
+	if (this->is_empty())
+		return nullptr;
+	else
+		return this->max(this->root);
 }
 
 template <typename T>
@@ -181,7 +181,7 @@ sian::data_structure::RedBlackTree<T>::successor(Leaf<T>* ptr) const {
 		c_ptr = p_ptr;
 		p_ptr = c_ptr->parent;
 	}
-	return p_ptr;
+	return p_ptr != this->nil_leaf ? p_ptr : nullptr;
 }
 
 template <typename T>
@@ -196,7 +196,7 @@ sian::data_structure::RedBlackTree<T>::predecessor(Leaf<T>* ptr) const {
 		c_ptr = p_ptr;
 		p_ptr = c_ptr->parent;
 	}
-	return p_ptr;
+	return p_ptr != this->nil_leaf ? p_ptr : nullptr;
 }
 
 template <typename T>
