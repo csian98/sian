@@ -202,7 +202,7 @@ Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 
 [sqlite-shield]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
 [mariadb-shield]: https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white
-[mariadb-url]: https://mariadb.com
+[mariadb-url]: https://mariadb.com/docs/server/connect/
 [mongodb-shield]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
 [slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
 [OpenAI-shield]: https://img.shields.io/badge/openAI-74aa9c?style=for-the-badge&logo=openai&logoColor=white

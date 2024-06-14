@@ -33,7 +33,7 @@ CFLAGS := $(INC_FLAGS) -MMD -MP
 CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP
 #SHD_CXXFLAGS := -std=c++20 $(INC_FLAGS) -MMD -MP -fPIC
 NVCCFLAGS := $(INC_FLAGS)
-LDFLAGS := -L/Users/csian/projects/sian/lib -lsian
+LDFLAGS := -L/Users/csian/projects/sian/lib -lsian # -lssl -lcurl -lmariadbcpp
 ARFLAGS := crs
 #SHD_LDFLAGS := -shared
 
