@@ -98,14 +98,14 @@ Provides code templates for C++, CUDA, and Python development environments that 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Getting Started
+## ⚓ Getting Started
 
 Makefile source code is provided for use in the GCC or Clang Development environment.
 If Nvidia's nvcc is present in the system, compile the cuh header file and cu source code together.
 
 The _*.h_ extension is a header file extension for all C, C++, and CUDA, and in the case of code required at compile time, such as templates and inline functions, the code was provided at compile time through _*.hpp_ or _*.cuh_ files.
 
-❌ All codes were written based on the author's learning purposes, and it is clearly stated that the codes are not suitable for actual development environments.
+⚠️ All codes were written based on the author's learning purposes, and it is clearly stated that the codes are not suitable for actual development environments.
 
 ### Prerequisites
 
@@ -146,7 +146,7 @@ The _*.h_ extension is a header file extension for all C, C++, and CUDA, and in 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Usage
+## 📌 Usage
 
 The _*.cpp_ code files in _sian/usages_ contains example codes that use the library.
 Each code has an Entry Point that includes the main function.
@@ -155,7 +155,7 @@ _For more examples, please refer to the [usages](https://github.com/csian98/sian
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Roadmap
+## 🗺️ Roadmap
 
 - [ ] makefile, *.h, *.cpp, *.hpp, *.cuh, *.cu templates
 - [ ] utilities including timers and memory & thread pool
@@ -172,14 +172,14 @@ See the [open issues](https://github.com/csian98/sian/issues) for a full list of
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## License
+## 🔐 License
 
 Copyright © 2024, *Jeong Hoon Choi* or *Sian*. All rights reserved
 Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Contact
+## 📞 Contact
 
 Jeong Hoon (Sian) Choi - [@csian98](https://instagram.com/csian98) - [csian7386@gmail.com](mailto:csian7386@gmail.com)
 
