@@ -9,8 +9,8 @@
 //#pragma once
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 
-#ifndef _HEADER_SAMPLEHPP_
-#define _HEADER_SAMPLEHPP_
+#ifndef _HEADER_SAMPLE_HPP_
+#define _HEADER_SAMPLE_HPP_
 
 #include "sample.h"
 

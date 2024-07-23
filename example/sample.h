@@ -10,8 +10,8 @@
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 //#pragma comment(lib, "libpthread.so")
 
-#ifndef _HEADER_SAMPLEH_
-#define _HEADER_SAMPLEH_
+#ifndef _HEADER_SAMPLE_H_
+#define _HEADER_SAMPLE_H_
 
 /* OS dependent */
 #define OS_WINDOWS	0
