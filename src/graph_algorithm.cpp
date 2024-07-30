@@ -44,17 +44,14 @@ func:
 
 /* Data structures definition - struct & class */
 
-sian::graph::DFS::DFS(size_t vertex_size)
+sian::graph::BFS::BFS(size_t vertex_size)
 	: graph(vertex_size, false) {}
 
-sian::graph::DFS::DFS(std::initializer_list<std::pair<int, int>> list)
-	: graph(list, false) {}
-
-void sian::graph::DFS::connect(int from, int to) {
+void sian::graph::BFS::connect(int from, int to) {
 	this->graph.connect(from, to);
 }
 
-void sian::graph::DFS::run(int start) {
+void sian::graph::BFS::run(int start) {
 	std::queue<int> queue;
 	this->graph.get_vertex(start).set_color(Vertex::Color::GREY);
 	this->graph.get_vertex(start).set_distance(0);
@@ -79,8 +76,73 @@ void sian::graph::DFS::run(int start) {
 	}
 }
 
-int sian::graph::DFS::get_distance(int index) {
+int sian::graph::BFS::get_distance(int index) {
 	return this->graph.get_vertex(index).get_distance();
+}
+
+void sian::graph::BFS::Vertex::set_color(Color new_color) {
+	this->color = new_color;
+}
+
+const sian::graph::BFS::Vertex::Color&
+sian::graph::BFS::Vertex::get_color(void) const {
+	return this->color;
+}
+
+void sian::graph::BFS::Vertex::set_distance(int new_distance) {
+	this->distance = new_distance;
+}
+
+const int& sian::graph::BFS::Vertex::get_distance(void) const {
+	return this->distance;
+}
+
+void sian::graph::BFS::Vertex::set_pi(Vertex* other_pi) {
+	this->pi = other_pi;
+}
+
+sian::graph::BFS::Vertex*
+sian::graph::BFS::Vertex::get_pi(void) const {
+	return this->pi;
+}
+
+sian::graph::DFS::DFS(size_t vertex_size)
+	: graph(vertex_size, true) {}
+
+void sian::graph::DFS::connect(int from, int to) {
+	this->graph.connect(from, to);
+}
+
+void sian::graph::DFS::run(void) {
+    size_t vertex_size = this->graph.Graph::get_vertex_size();
+	for (int i = 0; i < vertex_size; ++i) {
+		if (this->graph.get_vertex(i).get_color() == Vertex::Color::WHITE) {
+			this->visit(i);
+		}
+	}
+}
+
+std::pair<int, int> sian::graph::DFS::get_range(int index) {
+	return std::make_pair(this->graph.get_vertex(index).get_start(),
+						  this->graph.get_vertex(index).get_end());
+}
+
+void sian::graph::DFS::visit(int index) {
+	this->time++;
+	this->graph.get_vertex(index).set_start(this->time);
+	this->graph.get_vertex(index).set_color(Vertex::Color::GREY);
+	auto [begin, end] = this->graph.adj_range(index);
+	for (auto iter = begin; iter != end; ++iter) {
+		if (this->graph.get_vertex(*iter).get_color() ==
+			Vertex::Color::WHITE) {
+			this->graph.get_vertex(*iter).set_pi(
+				&this->graph.get_vertex(index));
+			this->visit(*iter);
+		}
+	}
+	this->graph.get_vertex(index).set_color(Vertex::Color::BLACK);
+	this->time++;
+	this->graph.get_vertex(index).set_end(this->time);
 }
 
 void sian::graph::DFS::Vertex::set_color(Color new_color) {
@@ -98,6 +160,22 @@ void sian::graph::DFS::Vertex::set_distance(int new_distance) {
 
 const int& sian::graph::DFS::Vertex::get_distance(void) const {
 	return this->distance;
+}
+
+void sian::graph::DFS::Vertex::set_start(int time) {
+	this->start = time;
+}
+
+const int& sian::graph::DFS::Vertex::get_start(void) const {
+	return this->start;
+}
+
+void sian::graph::DFS::Vertex::set_end(int time) {
+	this->end = time;
+}
+
+const int& sian::graph::DFS::Vertex::get_end(void) const {
+	return this->end;
 }
 
 void sian::graph::DFS::Vertex::set_pi(Vertex* other_pi) {

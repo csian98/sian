@@ -202,7 +202,7 @@ Project Link: [https://github.com/csian98/sian](https://github.com/csian98/sian)
 [macos-url]: https://developer.apple.com/macos
 [archlinux-shield]: https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=for-the-badge
 [archlinux-url]: https://archlinux.org
-[cuda-shield]: https://img.shields.io/badge/NVIDIA%20CUDA-RTX3060-76B900?style=for-the-badge&logo=nvidia&logoColor=white
+[cuda-shield]: https://img.shields.io/badge/NVIDIA%20CUDA-RTX4060-76B900?style=for-the-badge&logo=nvidia&logoColor=white
 [cuda-url]: https://docs.nvidia.com/cuda/cuda-c-programming-guide/
 
 [sqlite-shield]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white

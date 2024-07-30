@@ -27,18 +27,12 @@ sian::graph::VertexGraph<T>::VertexGraph(size_t vertex_size,
 	  vertex(vertex_size) {}
 
 template <typename T>
-sian::graph::VertexGraph<T>::VertexGraph(
-	const std::initializer_list<std::pair<int, int>>& list, bool has_direction)
-	: AdjacencyMatrixGraph(list, has_direction),
-	  vertex(this->vertex_size) {}
-
-template <typename T>
-void sian::graph::VertexGraph<T>::set_vertex(int index, const T& vtx) {
+void sian::graph::VertexGraph<T>::set_vertex(const int index, const T& vtx) {
 	this->vertex[index] = vtx;
 }
 
 template <typename T>
-T& sian::graph::VertexGraph<T>::get_vertex(int index) {
+T& sian::graph::VertexGraph<T>::get_vertex(const int index) {
 	return this->vertex[index];
 }
 
@@ -49,19 +43,7 @@ sian::graph::WeightGraph<T>::WeightGraph(size_t vertex_size,
 	  weights(this->edges.size()) {}
 
 template <typename T>
-sian::graph::WeightGraph<T>::WeightGraph(
-	const std::initializer_list<std::pair<std::pair<int, int>, T>>& list,
-	bool has_direction)
-	: AdjacencyMatrixGraph(list),
-	  weights(this->edges.size()) {
-	int index;
-    for (const auto& edge : list) {
-		this->connect(edge.first.first, edge.first.second, edge.second);
-	}
-}
-
-template <typename T>
-void sian::graph::WeightGraph<T>::connect(int from, int to,
+void sian::graph::WeightGraph<T>::connect(const int from, const int to,
 										  const T& weight) {
 	int index = this->get_index(from, to);
 	this->connect(index);
@@ -69,7 +51,7 @@ void sian::graph::WeightGraph<T>::connect(int from, int to,
 }
 
 template <typename T>
-const T& sian::graph::WeightGraph<T>::get_weight(int from, int to) const {
+const T& sian::graph::WeightGraph<T>::get_weight(const int from, const int to) const {
 	int index = this->get_index(from, to);
 	return weights[index];
 }
@@ -81,20 +63,13 @@ sian::graph::VertexWeightGraph<T, U>::VertexWeightGraph(size_t vertex_size,
 	  vertex(vertex_size) {}
 
 template <typename T, typename U>
-sian::graph::VertexWeightGraph<T, U>::VertexWeightGraph(
-	const std::initializer_list<std::pair<std::pair<int, int>, U>>& list,
-	bool has_direction)
-	: WeightGraph<U>(list, has_direction),
-	  vertex(this->vertex_size) {}
-
-template <typename T, typename U>
-void sian::graph::VertexWeightGraph<T, U>::set_vertex(int index,
+void sian::graph::VertexWeightGraph<T, U>::set_vertex(const int index,
 													  const T& vtx) {
 	this->vertex[index] = vtx;
 }
 
 template <typename T, typename U>
-T& sian::graph::VertexWeightGraph<T, U>::get_vertex(int index) {
+T& sian::graph::VertexWeightGraph<T, U>::get_vertex(const int index) {
 	return this->vertex[index];
 }
 

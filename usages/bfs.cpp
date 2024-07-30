@@ -1,6 +1,7 @@
+
 /**
- * @file		dfs.cpp
- * @brief		DFS
+ * @file		bfs.cpp
+ * @brief		BFS
  * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-07-23
@@ -55,22 +56,22 @@ int main(int argc, char* argv[]) {
 //	std::set_terminate(&custom_terminate_fnct);
 	size_t vertex_size = 8;
 	
-	DFS dfs(vertex_size);
-	dfs.connect(0, 1);
-	dfs.connect(0, 4);
-	dfs.connect(1, 5);
-	dfs.connect(2, 3);
-	dfs.connect(2, 5);
-	dfs.connect(2, 6);
-	dfs.connect(3, 6);
-	dfs.connect(3, 7);
-	dfs.connect(5, 6);
-	dfs.connect(6, 7);
+	BFS bfs(vertex_size);
+	bfs.connect(0, 1);
+	bfs.connect(0, 4);
+	bfs.connect(1, 5);
+	bfs.connect(2, 3);
+	bfs.connect(2, 5);
+	bfs.connect(2, 6);
+	bfs.connect(3, 6);
+	bfs.connect(3, 7);
+	bfs.connect(5, 6);
+	bfs.connect(6, 7);
 	
-	dfs.run(1);
+	bfs.run(1);
 
 	for (int i = 0; i < vertex_size; ++i) {
-		int distance = dfs.get_distance(i);
+		int distance = bfs.get_distance(i);
 		std::cout << "distance [" << i << "] : " << distance << std::endl;
 	}
     

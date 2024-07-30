@@ -47,19 +47,15 @@ func:
 sian::graph::Graph::Graph(size_t vertex_size, bool has_direction)
 	: vertex_size(vertex_size), has_direction(has_direction) {}
 
+size_t sian::graph::Graph::get_vertex_size(void) const {
+	return this->vertex_size;
+}
+
 sian::graph::AdjacencyListGraph::AdjacencyListGraph(size_t vertex_size,
 													bool has_direction)
 	: Graph(vertex_size, has_direction), edges(vertex_size) {}
 
-sian::graph::AdjacencyListGraph::AdjacencyListGraph(
-	const std::initializer_list<std::pair<int, int>>& list, bool has_direction)
-	: Graph(this->get_vertex_size(list), has_direction) {
-	for (const auto& edge : list) {
-		this->connect(edge.first, edge.second);
-	}
-}
-
-void sian::graph::AdjacencyListGraph::connect(int from, int to) {
+void sian::graph::AdjacencyListGraph::connect(const int from, const int to) {
 	this->edges[from].push_back(to);
 	
 	if (!this->has_direction) {
@@ -67,7 +63,7 @@ void sian::graph::AdjacencyListGraph::connect(int from, int to) {
 	}
 }
 
-bool sian::graph::AdjacencyListGraph::is_connect(int from, int to) const {
+bool sian::graph::AdjacencyListGraph::is_connect(const int from, const int to) const {
 	auto list = this->edges[from];
 
 	return std::find(list.begin(), list.end(), to) != list.end();
@@ -102,42 +98,34 @@ sian::graph::AdjacencyMatrixGraph::AdjacencyMatrixGraph(size_t vertex_size,
 	}
 }
 
-sian::graph::AdjacencyMatrixGraph::AdjacencyMatrixGraph(
-	const std::initializer_list<std::pair<int, int>>& list, bool has_direction)
-	: AdjacencyMatrixGraph(this->get_vertex_size(list), has_direction) {
-	for (const auto edge : list) {
-		this->connect(edge.first, edge.second);
-	}
-}
-
-void sian::graph::AdjacencyMatrixGraph::connect(int from, int to) {
+void sian::graph::AdjacencyMatrixGraph::connect(const int from, const int to) {
 	int index = this->get_index(from, to);
 	this->edges[index] = true;
 }
 
-bool sian::graph::AdjacencyMatrixGraph::is_connect(int from, int to) const {
+bool sian::graph::AdjacencyMatrixGraph::is_connect(const int from, const int to) const {
 	int index = this->get_index(from, to);
 	return this->edges[index];
 }
 
 std::pair<std::vector<int>::iterator, std::vector<int>::iterator>
-sian::graph::AdjacencyMatrixGraph::adj_range(int vertex_idx) {
+sian::graph::AdjacencyMatrixGraph::adj_range(const int vertex_idx) {
 	this->adjacent.clear();
 	int idx;
 	for (int idx = 0; idx < this->vertex_size; ++idx) {
 		if (idx != vertex_idx) {
-			if (this->is_connect(idx, vertex_idx))
+			if (this->is_connect(vertex_idx, idx))
 				this->adjacent.push_back(idx);
 		}
 	}
 	return std::make_pair(this->adjacent.begin(), this->adjacent.end());
 }
 
-void sian::graph::AdjacencyMatrixGraph::connect(int index) {
+void sian::graph::AdjacencyMatrixGraph::connect(const int index) {
 	this->edges[index] = true;
 }
 
-int sian::graph::AdjacencyMatrixGraph::get_index(int from, int to) const {
+int sian::graph::AdjacencyMatrixGraph::get_index(const int from, const int to) const {
 	int index;
 	if (has_direction) {
 		index = from * this->vertex_size + to;
@@ -147,15 +135,6 @@ int sian::graph::AdjacencyMatrixGraph::get_index(int from, int to) const {
 		index = this->init_index[max_value] + min_value;
 	}
 	return index;
-}
-
-size_t sian::graph::AdjacencyMatrixGraph::get_vertex_size(const std::initializer_list<std::pair<int, int>>& list) {
-	size_t maximum = -1, maxedge;
-	for (const auto& edge : list) {
-		maxedge = edge.first > edge.second ? edge.first : edge.second;
-		maximum = maxedge < maximum ? maximum : maxedge;
-	}
-	return maximum;
 }
 
 /* Functions definition */

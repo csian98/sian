@@ -78,10 +78,12 @@ namespace sian {
 			Graph(size_t, bool);
 
 			virtual ~Graph(void) noexcept = default;
-			
-			virtual void connect(int, int) = 0;
 
-			virtual bool is_connect(int, int) const = 0;
+			virtual size_t get_vertex_size(void) const;
+			
+			virtual void connect(const int, const int) = 0;
+
+			virtual bool is_connect(const int, const int) const = 0;
 			
 		protected:
 			size_t vertex_size;
@@ -93,14 +95,11 @@ namespace sian {
 		public:
 			AdjacencyListGraph(size_t, bool);
 
-			AdjacencyListGraph(
-				const std::initializer_list<std::pair<int, int>>&, bool);
-
 			virtual ~AdjacencyListGraph(void) noexcept = default;
 
-			virtual void connect(int, int) override;
+			virtual void connect(const int, const int) override;
 
-			virtual bool is_connect(int, int) const override;
+			virtual bool is_connect(const int, const int) const override;
 			
 		protected:
 			size_t get_vertex_size(const std::initializer_list<std::pair<int, int>>&);
@@ -112,23 +111,19 @@ namespace sian {
 		public:
 			AdjacencyMatrixGraph(size_t, bool);
 
-			AdjacencyMatrixGraph(
-				const std::initializer_list<std::pair<int, int>>&, bool);
-
 			virtual ~AdjacencyMatrixGraph(void) noexcept = default;
 
-			virtual void connect(int, int) override;
+			virtual void connect(const int, const int) override;
 
-			virtual bool is_connect(int, int) const override;
+			virtual bool is_connect(const int, const int) const override;
 
-			virtual std::pair<std::vector<int>::iterator, std::vector<int>::iterator> adj_range(int);
+			virtual std::pair<std::vector<int>::iterator, std::vector<int>::iterator>
+			adj_range(const int);
 			
 		protected:
-			virtual void connect(int);
+			virtual void connect(const int);
 			
-			virtual int get_index(int, int) const;
-
-			virtual size_t get_vertex_size(const std::initializer_list<std::pair<int, int>>&);
+			virtual int get_index(const int, const int) const;
 
 			std::vector<int> init_index;
 
@@ -142,12 +137,9 @@ namespace sian {
 		public:
 			VertexGraph(size_t, bool);
 
-			VertexGraph(
-				const std::initializer_list<std::pair<int, int>>&, bool);
-
-			virtual void set_vertex(int, const T&);
+			virtual void set_vertex(const int, const T&);
 			
-			virtual T& get_vertex(int);
+			virtual T& get_vertex(const int);
 			
 		private:
 			std::vector<T> vertex;
@@ -158,17 +150,13 @@ namespace sian {
 		public:
 			WeightGraph(size_t, bool);
 
-			WeightGraph(
-				const std::initializer_list<std::pair<std::pair<int, int>, T>>&,
-				bool);
-
 			virtual ~WeightGraph(void) noexcept = default;
 
-			virtual void connect(int, int, const T&);
+			virtual void connect(const int, const int, const T&);
 
-			virtual const T& get_weight(int, int) const;
+			virtual const T& get_weight(const int, const int) const;
 			
-		private:
+		protected:
 			std::vector<T> weights;
 		};
 
@@ -177,15 +165,11 @@ namespace sian {
 		public:
 			VertexWeightGraph(size_t, bool);
 
-			VertexWeightGraph(
-				const std::initializer_list<std::pair<std::pair<int, int>, U>>&,
-				bool);
-
 			virtual ~VertexWeightGraph(void) noexcept = default;
 
-			virtual void set_vertex(int, const T&);
+			virtual void set_vertex(const int, const T&);
 
-			virtual T& get_vertex(int);
+			virtual T& get_vertex(const int);
 
 		private:
 			std::vector<T> vertex;
