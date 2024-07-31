@@ -51,7 +51,7 @@ Sample::Sample(const Sample& src) {
 }
 
 Sample& Sample::operator=(const Sample& src) {
-	if(this == &src) {
+	if (this == &src) {
 		return *this;
 	}
 	
