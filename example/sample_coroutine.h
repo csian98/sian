@@ -67,43 +67,58 @@ extern "C" {
 
 /* Declaration */
 
-struct awaiter {
-	bool await_ready(void) noexcept;
+template <typename T>
+class Generator {
+public:	
+    class promise_type;
+	typedef std::coroutine_handle<promise_type> handle_type;
 
-	void await_suspend(std::coroutine_handle<>) const;
+	Generator(handle_type);
 
-	void await_resume(void) const noexcept;
-};
+	~Generator(void);
 
-class task {
-public:
-	struct promise_type;
-	
-	task(std::coroutine_handle<promise_type>);
+	explicit operator bool(void);
 
-	virtual ~task(void) noexcept;
+	T operator()(void);
 
-	void next(void);
-	
 private:
-	std::coroutine_handle<promise_type> coro;
+	void fill(void);
+	
+	bool full = false;
+	
+	handle_type coro;
 };
 
-struct task::promise_type {
-	std::suspend_always initial_suspend(void);
+template <typename T>
+class Generator<T>::promise_type {
+public:
+	Generator<T> get_return_object(void) {
+		return Generator(handle_type::from_promise(*this));
+	}
 
-	std::suspend_never final_suspend(void) noexcept;
+	std::suspend_always initial_suspend(void) { return {}; }
 
-	task get_return_object(void);
+	std::suspend_always final_suspend(void) noexcept { return {}; }
 
-	void return_void(void);
+	void unhandled_exception(void) { this->exception = std::current_exception(); }
 
-	void unhandled_exception(void);
+	template <std::convertible_to<T> From>
+	std::suspend_always yield_value(From&& from) {
+		this->value = std::forward<From>(from);
+		return {};
+	}
+
+	void return_void(void) {}
+
+private:
+	T value;
+	
+	std::exception_ptr exception;
 };
 
 /* Functions declaration */
 
-task coro_function(void);
+
 
 /*
 #ifdef __cplusplus
@@ -114,6 +129,6 @@ task coro_function(void);
 #endif // OS dependency
 
 /* Inline & Template Define Header */
-//#include "sample.hpp"
+#include "sample_coroutine.hpp"
 
 #endif // Header duplicate

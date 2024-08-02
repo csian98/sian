@@ -23,42 +23,9 @@ extern "C" {
 
 /* Data structures definition - struct & class */
 
-task::task(std::coroutine_handle<promise_type> coro) : coro(coro) {}
-
-task::~task(void) noexcept {
-	if (this->coro) {
-		coro.destroy();
-	}
-}
-
-void task::next(void) {
-	this->coro.resume();
-}
-
-std::suspend_always task::promise_type::initial_suspend(void) {
-	return {};
-}
-
-std::suspend_never task::promise_type::final_suspend(void) noexcept {
-	return {};
-}
-
-task task::promise_type::get_return_object(void) {
-	return task{std::coroutine_handle<promise_type>::from_promise(*this)};
-}
-
-void task::promise_type::return_void(void) {}
-
-void task::promise_type::unhandled_exception(void) {
-	std::exit(1);
-}
 
 /* Functions definition */
 
-task coro_function(void) {
-//	co_await std::suspend_always{};
-	co_return;
-}
 
 #endif // OS dependency
 
