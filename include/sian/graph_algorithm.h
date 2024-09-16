@@ -369,6 +369,9 @@ namespace sian {
 
 			Matrix<std::optional<int>> pi;
 		};
+
+		std::string de_bruijn_sequence(int, int,
+									   const std::string&);
 	}
 }
 

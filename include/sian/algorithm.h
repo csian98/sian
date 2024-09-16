@@ -32,6 +32,12 @@
 #include <random>
 #include <limits>
 #include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+
+#include <stack>
+#include <queue>
 
 #include "sian/data_structure.h"
 

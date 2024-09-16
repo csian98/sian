@@ -187,6 +187,15 @@ sian::graph::DFS::Vertex::get_pi(void) const {
 	return this->pi;
 }
 
+std::string sian::graph::de_bruijn_sequence(int n, int k,
+											const std::string& a) {
+	std::string output;
+
+	std::unordered_set<std::string> set;
+	std::vector<int> edges;
+	auto dfs = []()
+}
+
 /* Functions definition */
 
 /*

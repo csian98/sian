@@ -90,6 +90,16 @@
 
 #include <coroutine>
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/signal.h>
+#include <sys/msg.h>
+#include <sys/sem.h>
+#include <errno.h>
+
+
+
 using namespace std::string_literals;
 using namespace std::string_view_literals;
 

@@ -1,6 +1,6 @@
 /**
- * @file		sample.hpp
- * @brief		
+ * @file	    graph_algorithm.hpp
+ * @brief		Graph Algorithms
  * @author		Jeong Hoon (Sian) Choi
  * @version 	1.0.0
  * @date		2024-04-03
@@ -9,8 +9,8 @@
 //#pragma once
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 
-#ifndef _HEADER_SAMPLE_HPP_
-#define _HEADER_SAMPLE_HPP_
+#ifndef _HEADER_GRAPH_ALGORITHM_HPP_
+#define _HEADER_GRAPH_ALGORITHM_HPP_
 
 #include "sian/graph_algorithm.h"
 

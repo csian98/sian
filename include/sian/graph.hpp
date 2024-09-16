@@ -9,8 +9,8 @@
 //#pragma once
 //#pragma GCC diagnostic ignored "-Wstringop-truncation"
 
-#ifndef _HEADER_SAMPLE_HPP_
-#define _HEADER_SAMPLE_HPP_
+#ifndef _HEADER_GRAPH_HPP_
+#define _HEADER_GRAPH_HPP_
 
 #include "sian/graph.h"
 
@@ -46,7 +46,7 @@ template <typename T>
 void sian::graph::WeightGraph<T>::connect(const int from, const int to,
 										  const T& weight) {
 	int index = this->get_index(from, to);
-	this->connect(index);
+	AdjacencyMatrixGraph::connect(index);
 	this->weights[index] = weight;
 }
 
