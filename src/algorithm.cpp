@@ -166,8 +166,6 @@ void sian::sort::bucket_sort(int* list, int size) {
 	delete[] buckets;
 }
 
-void sian::
-
 #endif // OS dependency
 
 /*
