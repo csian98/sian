@@ -160,7 +160,7 @@ _For more examples, please refer to the [usages](https://github.com/csian98/sian
 
 ## 🗺️ Roadmap
 
-- [ ] makefile, *.h, *.cpp, *.hpp, *.cuh, *.cu templates
+- [X] makefile, *.h, *.cpp, *.hpp, *.cuh, *.cu templates
 - [ ] utilities including timers and memory & thread pool
 - [ ] network protocols such as tcp, ssl, curl, etc.
   - [ ] c2c server
@@ -170,6 +170,7 @@ _For more examples, please refer to the [usages](https://github.com/csian98/sian
 - [ ] standard library extension header
   - [ ] allocator
   - [ ] hash_functions
+- [X] Unit test code
 
 See the [open issues](https://github.com/csian98/sian/issues) for a full list of proposed features (and known issues).
 
