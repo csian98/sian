@@ -4,4 +4,6 @@
 -I/usr/local/include
 -I/opt/homebrew/include
 -I/Users/csian/projects/sian/include
--I/Users/csian/projects/cuda/include
+-I/Users/csian/cross/cuda/include
+#-I/Users/csian/cross/linux/include
+#-I/Users/csian/cross/windows/include

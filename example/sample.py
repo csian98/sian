@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ sample.py
 Description
 
@@ -13,10 +13,20 @@ __version__ = "1.0.0"
 # Import #
 import os, sys
 sys.path.append("pylib/")
+import wanrings
+warnings.filterwarnings("ignore")
+import logging
 
 import asyncio
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+import sklearn
+import tensorflow as tf
+from tensorflow import keras
+tf.get_logger().setLevel(logging.ERROR)
+tf.random.set_seed()
 
 # Data Structures define - class #
 
