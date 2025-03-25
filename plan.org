@@ -1,0 +1,12 @@
+#+TITLE: plan.org
+#+AUTHOR: Jeong Hoon Choi
+#+DATE: 2024.05.06
+
+* Required Functions
+- [ ] Memory Pool
+- [ ] BLAS
+- [ ] curl
+- [ ] PCI TCI
+- [ ] C2C server
+- [X] Tree Structure (B-tree, RB-tree, Hash Table)
+- [X] TCP/SSL

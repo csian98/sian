@@ -1,0 +1,17 @@
+@startuml
+
+class Parent {
+		+int public_method(int var)
+		#int protected_var
+		-int private_var
+}
+
+class Child {
+		{static} +int public_method(int var)
+		{abstract} #int protected_var
+		-int private_var
+}
+
+Parent --|> Child
+
+@enduml
